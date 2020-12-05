@@ -1,0 +1,16 @@
+.fondo-cabecera{
+    background-image: url("lotr-siluetas.jpg");
+}
+.login-bg{
+    /* background-color: red; */
+    background-image: url("maparecortado.jpg") ;
+    background-size: cover;
+    
+}
+.runded{
+    border-radius: 50%;
+}
+.has-shadow{
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
