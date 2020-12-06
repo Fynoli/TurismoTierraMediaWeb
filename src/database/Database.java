@@ -4,32 +4,29 @@ import java.sql.*;
 
 public class Database {
 	
-	public static Connection connect(){
-        Connection con = null;
-        try {
-            Class.forName("org.sqlite.JDBC");
-            con =DriverManager.getConnection("jdbc:sqlite:TurismoTierraMedia.db");
-            System.out.println("Conexion exitosa");
-        }catch (ClassNotFoundException | SQLException exception){
-            System.out.println(exception+"");
-        }
-        return con;
-    }
-	
-	/*private static Database instance = null;
+	private static Database instance = null;
 	private Connection con=null;
 	
 	
-	private static final String dbURL="jdbc:sqlite:db/src/TurismoTierraMedia.db";
+	private static final String dbURL="jdbc:sqlite:F:\\Users\\Marcelo\\Java-ServerTurismoTM\\TurismoTierraMediaWeb\\src\\TurismoTierraMedia.db";
 	
 	
 	private Database() {
-		try {
-			con= DriverManager.getConnection(dbURL);
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-		}
+
+			try {
+				Class.forName("org.sqlite.JDBC");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				con= DriverManager.getConnection(dbURL);
+				System.out.println("conectado");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 	}
 	
 	public static Database getInstance() {
@@ -40,16 +37,20 @@ public class Database {
 		return instance;
 	}
 	
+	
+	public Connection getConnection() {
+		return con;
+	}
+	
+	
 	public Statement createStatement() {
 		Statement s=null;
 		try {
 			s=con.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			
 		}
 		return s;
-	}*/
+	}
 
 }

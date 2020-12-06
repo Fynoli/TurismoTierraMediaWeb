@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,34 +47,35 @@ public class Login extends HttpServlet {
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
 				
-				
-				String dbPass=null;
-				Connection con=Database.connect();
-				PreparedStatement st=null;//Database.getInstance().createStatement();
-				ResultSet rs=null;
+				String dbpass=null;
+				Connection con=null;
 				try {
+					con=Database.getInstance().getConnection();
+					final PreparedStatement st=con.prepareStatement("SELECT password FROM usuario WHERE nombre='"+username+"'");
+					final ResultSet rs = st.executeQuery();
 					
-					st=con.prepareStatement("SELECT password FROM usuario");
-					rs=st.executeQuery();//WHERE nombre LIKE '"+username+"'");
-					dbPass=rs.getString("password");
+					if(rs.next()) {
+						dbpass=rs.getString(1);
+					}
 					
-				} catch (SQLException e) {
+					rs.close();
+					st.close();
+					
+				}catch(final Exception e) {
 					e.printStackTrace();
 				}finally {
 					try {
-						if(rs!=null) {
-							rs.close();
-							st.close();
-						}
-						}
-						catch(SQLException e) {
-							e.printStackTrace();
-						}
+						con.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
+					con=null;
+				}
 				
 				
 				
-				if (password.equals(dbPass)) {
+				if (password.equals(dbpass)) {
 					request.getSession().setAttribute("usuario", username);
 					
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/welcome.jsp");
