@@ -21,7 +21,7 @@ public class Database {
 			}
 			try {
 				con= DriverManager.getConnection(dbURL);
-				System.out.println("conectado");
+				System.out.println("conectado con la base de datos");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
