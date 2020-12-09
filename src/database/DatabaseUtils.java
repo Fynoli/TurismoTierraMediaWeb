@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public abstract class DatabaseUtils {
+	
 	public static void closeConnection(Connection con) {
 		try {
 			con.close();

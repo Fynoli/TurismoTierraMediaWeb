@@ -39,6 +39,18 @@ public class Database {
 	
 	
 	public Connection getConnection() {
+
+			try {
+				if(con.isClosed()) {
+					System.out.println("Nueva conexion abierta");
+					Class.forName("org.sqlite.JDBC");
+					con= DriverManager.getConnection(dbURL);
+
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		return con;
 	}
 	

@@ -1,74 +1,87 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Iniciar sesion</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-<link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
-<link rel="stylesheet" href="assets/custom.css">
-<style type="text/css">
-body {
-	padding: 0;
-	margin: 0;
-}
-
-.hero {
-	height: 100vh;
-	position: relative;
-}
-
-.notification {
-	padding-top: 20px;
-	padding-bottom: 30px;
-}
-
-.button {
-	margin-top: 10px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="assets/custom.css">
+    <title>Tierra Media | Home</title>
 </head>
 <body>
-	<div class="hero login-bg">
-		<div class="hero-body">
-			<div class="columns is-centered">
-				<div class="column is-half">
-					<div class="notification is-light has-shadow">
-						<h1 class="title has-text-centered is-size-2">Iniciar Sesion</h1>
-						<figure class="image container is-64x64 rounded">
-							<img src="assets/the-fellowship.jpg">
-						</figure>
-						<form action="login" method="post">
-						<div class="field">
-							<label class="label">Nombre</label>
-							<p class="control has-icons-left has-icons-right">
-								<input class="input" type="text" placeholder="Email" name="username"> <span
-									class="icon is-small is-left"> <i
-									class="fas fa-envelope"></i>
-								</span>
-							</p>
-						</div>
-						<div class="field">
-							<label class="label">Contrase�a:</label>
-							<p class="control has-icons-left">
-								<input class="input" type="password" placeholder="Password" name="password">
-								<span class="icon is-small is-left"> <i
-									class="fas fa-lock"></i>
-								</span>
-							</p>
-						</div>
-						<a class="button is-info is-rounded is-outlined is-medium">Crear
-							Cuenta</a> 
-							<button type="submit" class="button is-info is-rounded is-outlined is-medium">Iniciar Sesion</button>
-							</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <header class="hero">
+        <div class="hero-body has-background-grey-dark">
+            <div class="container is-max-desktop">
+                <h1 class="title has-text-warning-dark">Turismo en la Tierra media</h1>
+            </div>
+        </div>
+    </header>
+    <section class="section has-bg-map">
+        <h2 class="title has-text-centered has-text-warning-light">Explora un fantástico mundo!</h2>
+        
+        <div class="container mt-6">
+           <div class="columns is-variable is-8">
+               <div class="column">
+                  
+                <div class="card is-smooth">
+                    <div class="card-header">
+                        <h2 class="card-header-title subtitle">La aventura te espera.</h2>
+                    </div>
+                    <div class="card-content">
+                        <p>Experimenta aventuras nunca antes vistas.</p>
+                        <p>Recorre excepcionales paisajes en lugares donde solo los mas habilidosos pueden llegar.</p>
+                        <p>Disfruta apetitosos banquetes de la cocina tradicional hobbit</p>
+                    </div>
+                  </div>
+
+               </div>
+               
+               <div class="column">
+                   <div class="card is-smooth">
+                    <div class="card-header">
+                        <h2 class="card-header-title subtitle has-text-warning-light">Comienza tu aventura</h2>
+                    </div>
+                    <div class="card-content">
+                        <form class="form" action="profile" method="POST">
+                            <div class="field">
+                                <label class="label has-text-warning-light" for="username">Usuario</label>
+                                <div class="control has-icons-left">
+                                    <input type="text" class="input" name="username" id="username">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label has-text-warning-light" for="password">contraseña</label>
+                                <div class="control has-icons-left">
+                                    <input type="password" class="input" name="password" id="password">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-key"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <a href="/" class="button is-primary">Crear cuenta</a>
+                                </div>
+                                <div class="control">
+                                    <button type="submit" class="button is-link">Inciar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                  </div>
+               </div>
+
+           </div>
+        </div>
+    </section>
+    <footer class="footer has-background-grey-darker has-text-warning-dark">
+        <p class="is-copy">Desarrollado por Ctrl+F</p>
+    </footer>
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 </body>
 </html>

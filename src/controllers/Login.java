@@ -50,34 +50,41 @@ public class Login extends HttpServlet {
 				String password = request.getParameter("password");
 				
 				String dbpass=null;
+				Integer userid=null;
+				
 				Connection con=null;
 				try {
 					con=Database.getInstance().getConnection();
-					final PreparedStatement st=con.prepareStatement("SELECT password FROM usuario WHERE nombre='"+username+"'");
+					final PreparedStatement st=con.prepareStatement("SELECT usuario_id, password FROM usuario WHERE nombre='"+username+"'");
 					final ResultSet rs = st.executeQuery();
 					
 					if(rs.next()) {
-						dbpass=rs.getString(1);
+						dbpass=rs.getString("password");
+						userid=rs.getInt("usuario_id");
 					}
 					
-					rs.close();
-					st.close();
+					if(rs!=null)
+					{
+						rs.close();
+						st.close();
+					}
+					
 					
 				}catch(final Exception e) {
 					e.printStackTrace();
 				}finally {
 					DatabaseUtils.closeConnection(con);
-					con=null;
 				}
 				
 
-				System.out.println("La pass Encriptada es: "+ new String(Blowfish.getInstance().encrypt(password)));
-				password=new String(Blowfish.getInstance().encrypt(password));
+				//System.out.println("La pass Encriptada es: "+ new String(Blowfish.getInstance().encrypt(password)));
+				//password=new String(Blowfish.getInstance().encrypt(password));
 				
 				if (password.equals(dbpass)) {
 					request.getSession().setAttribute("usuario", username);
+					request.getSession().setAttribute("userid", userid);
 					
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/welcome.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/profile");
 					dispatcher.forward(request, response);
 				} else {
 					request.setAttribute("failed", "true");
