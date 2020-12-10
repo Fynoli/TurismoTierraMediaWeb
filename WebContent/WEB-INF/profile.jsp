@@ -13,6 +13,7 @@
 <% Integer dbPresupuesto= (Integer) request.getAttribute("dbPresupuesto");%>
 <% Double dbTiempo= (Double) request.getAttribute("dbTiempo");%>
 <% String dbGustos= (String) request.getAttribute("dbGustos");%>
+<% String dbProfilePic= (String) request.getAttribute("dbProfilePic");%>
     <header class="hero">
         <div class="hero-body has-background-grey-dark">
             <div class="container is-max-desktop">
@@ -28,7 +29,10 @@
             ">
             <div class="columns is-flex is-centered">
                 <figure class="image is-128x128 ">
-                    <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                <%if(dbProfilePic==null){
+                	dbProfilePic="https://i.ibb.co/0mz7xzJ/no-profile-photo.jpg";
+                }%>
+                    <img class="is-rounded" src="<%=dbProfilePic%>">
                   </figure>
             </div>
                 <div class="card-header">

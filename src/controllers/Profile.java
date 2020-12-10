@@ -30,9 +30,10 @@ public class Profile extends HttpServlet {
         Integer dbPresupuesto = null;
         Double dbTiempo = null;
         String dbGustos = null;
+        String dbProfilePic=null;
         Connection con = null;
         String query = "SELECT usuario.nombre, usuario.presupuesto, \r\n"
-                +"usuario.tiempo_disponible, tipo_atraccion.nombre as tipo_atraccion \r\n"
+                +"usuario.tiempo_disponible, tipo_atraccion.nombre as tipo_atraccion, usuario.profile_pic \r\n"
                 +" FROM usuario \r\n"
                 +" JOIN tipo_atraccion on usuario.atraccion_favorita=tipo_atraccion.tipo_atraccion_id \r\n"
                 +" AND usuario.usuario_id =" + userid;
@@ -46,6 +47,7 @@ public class Profile extends HttpServlet {
                 dbPresupuesto = rs.getInt("presupuesto");
                 dbTiempo = rs.getDouble("tiempo_disponible");
                 dbGustos = rs.getString("tipo_atraccion");
+                dbProfilePic = rs.getString("profile_pic");
 
             }
             rs.close();
@@ -67,6 +69,7 @@ public class Profile extends HttpServlet {
         request.setAttribute("dbPresupuesto", dbPresupuesto);
         request.setAttribute("dbTiempo", dbTiempo);
         request.setAttribute("dbGustos", dbGustos);
+        request.setAttribute("dbProfilePic", dbProfilePic);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/profile.jsp");
         dispatcher.forward(request, response);
 

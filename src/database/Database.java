@@ -7,8 +7,12 @@ public class Database {
 	private static Database instance = null;
 	private Connection con=null;
 	
+	private final static String rutaMarce="F:\\Users\\Marcelo\\Java-ServerTurismoTM\\TurismoTierraMediaWeb\\src\\TurismoTierraMedia.db";
+	private final static String rutaAntonio="";
+	private final static String rutaEmilio="";
+	private final static String rutaFlor="";
 	
-	private static final String dbURL="jdbc:sqlite:F:\\Users\\Marcelo\\Java-ServerTurismoTM\\TurismoTierraMediaWeb\\src\\TurismoTierraMedia.db";
+	private static final String dbURL="jdbc:sqlite:"+rutaMarce;//Cambiar este por el de ustedes
 	
 	
 	private Database() {

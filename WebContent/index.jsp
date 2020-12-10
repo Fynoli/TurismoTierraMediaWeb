@@ -42,7 +42,7 @@
                         <h2 class="card-header-title subtitle has-text-warning-light">Comienza tu aventura</h2>
                     </div>
                     <div class="card-content">
-                        <form class="form" action="profile" method="POST">
+                        <form class="form" action="login" method="POST">
                             <div class="field">
                                 <label class="label has-text-warning-light" for="username">Usuario</label>
                                 <div class="control has-icons-left">
