@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.User;
+import models.Usuario;
 
 /**
  * Servlet implementation class compras
@@ -39,7 +39,7 @@ public class compras extends HttpServlet {
 		String user= (String) request.getSession().getAttribute("usuario");
 		Integer userid= (Integer) request.getSession().getAttribute("userid");
 		
-		User comprador;
+		Usuario comprador;
 		
 		
 		

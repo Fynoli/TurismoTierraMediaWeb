@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import crypto.Blowfish;
-import database.Database;
-import database.DatabaseUtils;
+import dao.UsuarioDao;
 
 /**
  * Servlet implementation class Login
@@ -23,6 +22,12 @@ import database.DatabaseUtils;
 @WebServlet("/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private UsuarioDao uDao;
+
+    public void init() {
+        uDao = new UsuarioDao();
+    }
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,7 +42,6 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -47,42 +51,14 @@ public class Login extends HttpServlet {
 		// http://localhost:8080/HolaMundo/login
 		
 				String username = request.getParameter("username");
-				String password = request.getParameter("password");
-				
-				String dbpass=null;
-				Integer userid=null;
-				
-				Connection con=null;
-				try {
-					con=Database.getInstance().getConnection();
-					final PreparedStatement st=con.prepareStatement("SELECT usuario_id, password FROM usuario WHERE nombre='"+username+"'");
-					final ResultSet rs = st.executeQuery();
-					
-					if(rs.next()) {
-						dbpass=rs.getString("password");
-						userid=rs.getInt("usuario_id");
-					}
-					
-					if(rs!=null)
-					{
-						rs.close();
-						st.close();
-					}
-					
-					
-				}catch(final Exception e) {
-					e.printStackTrace();
-				}finally {
-					DatabaseUtils.closeConnection(con);
-				}
+				String password = request.getParameter("password");	
 				
 
 				//System.out.println("La pass Encriptada es: "+ new String(Blowfish.getInstance().encrypt(password)));
 				//password=new String(Blowfish.getInstance().encrypt(password));
 				
-				if (password.equals(dbpass)) {
-					request.getSession().setAttribute("usuario", username);
-					request.getSession().setAttribute("userid", userid);
+				if (uDao.validar(username, password)) {
+					request.getSession().setAttribute("usuarioId", uDao.getUno(username).getId());
 					
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/profile");
 					dispatcher.forward(request, response);
