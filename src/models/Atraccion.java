@@ -1,9 +1,12 @@
 package models;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="atraccion")
-public class Atraccion {
+public class Atraccion{
 
     public Atraccion() {
     }
@@ -28,6 +31,16 @@ public class Atraccion {
     @ManyToOne
     @JoinColumn(name = "tipo_id")
     private TipoAtraccion tipos_atraccion;
+    
+    @ManyToMany()
+    @JoinTable(
+        name = "promocion_atraccion", 
+        joinColumns = { @JoinColumn(name = "atraccion_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "promocion_id") }
+    )
+    Set<Promocion> promociones = new HashSet<>();
+    
+    
 
     public int getId() {
         return id;
@@ -84,4 +97,13 @@ public class Atraccion {
     public void setTipos_atraccion(TipoAtraccion tipos_atraccion) {
         this.tipos_atraccion = tipos_atraccion;
     }
+
+	public Set<Promocion> getPromociones() {
+		return promociones;
+	}
+
+	public void setPromociones(Set<Promocion> promociones) {
+		this.promociones = promociones;
+	}    
+    
 }

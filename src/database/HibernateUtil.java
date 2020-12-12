@@ -12,7 +12,6 @@ import models.Atraccion;
 import models.Itinerario;
 import models.Itinerario_detalle;
 import models.Promocion;
-import models.Promocion_Atraccion;
 import models.TipoAtraccion;
 import models.Tipo_Descuento_Promocion;
 import models.Usuario;

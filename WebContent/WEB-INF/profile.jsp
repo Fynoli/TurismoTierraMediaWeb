@@ -48,7 +48,7 @@
 					</p>
 
 					<div class="has-text-centered">
-						<a href="" class="button is-primary">Comprar Atracciones</a>
+						<a href="compra" class="button is-primary">Comprar Atracciones</a>
 					</div>
 
 			</div>

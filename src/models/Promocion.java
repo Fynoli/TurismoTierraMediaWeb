@@ -1,5 +1,8 @@
 package models;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -27,6 +30,11 @@ public class Promocion {
     @ManyToOne
     @JoinColumn(name = "tipo_promocion")
     private Tipo_Descuento_Promocion tipo_promo;
+    
+    @ManyToMany(mappedBy = "promociones")
+    private Set<Atraccion> atracciones = new HashSet<>();
+    
+    
 
     public String getId() {
         return id;
@@ -79,4 +87,22 @@ public class Promocion {
     public void setId(String id) {
         this.id = id;
     }
+
+	public int getPromocion_id() {
+		return promocion_id;
+	}
+
+	public void setPromocion_id(int promocion_id) {
+		this.promocion_id = promocion_id;
+	}
+
+	public Set<Atraccion> getAtracciones() {
+		return atracciones;
+	}
+
+	public void setAtracciones(Set<Atraccion> atracciones) {
+		this.atracciones = atracciones;
+	}
+    
+    
 }
