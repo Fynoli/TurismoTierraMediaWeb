@@ -51,11 +51,6 @@
 						<a href="" class="button is-primary">Comprar Atracciones</a>
 					</div>
 
-
-				<div class="has-text-centered">
-					<a href="" class="button is-primary">Comprar Atracciones</a>
-				</div>
-
 			</div>
 			<!--Fin Card Content-->
 		</div>
