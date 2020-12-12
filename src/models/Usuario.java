@@ -62,7 +62,6 @@ public class Usuario {
 		this.tipoAtraccion = tipoAtraccion;
 	}
 
-
 	public int getId() {
 		return id;
 	}
