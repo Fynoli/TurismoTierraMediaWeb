@@ -43,6 +43,7 @@ public class Usuario {
 	private int esadmin;
 	
 	@OneToOne
+	@JoinColumn(name="id")
 	private TipoAtraccion tipo;
 	
 	
