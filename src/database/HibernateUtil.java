@@ -13,6 +13,9 @@ import models.Usuario;
 
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
+    
+    private static final String marce = "jdbc:sqlite:F:\\Users\\Marcelo\\Java-ServerTurismoTM\\TurismoTierraMediaWeb\\src\\TurismoTierraMedia.db";
+    private static final String emi = "jdbc:sqlite:/home/ediffer/java-projects/TurismoTierraMediaWeb/src/TurismoTierraMedia.db";
 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
@@ -21,7 +24,7 @@ public class HibernateUtil {
 
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "org.sqlite.JDBC");
-                settings.put(Environment.URL, "jdbc:sqlite:F:\\Users\\Marcelo\\Java-ServerTurismoTM\\TurismoTierraMediaWeb\\src\\TurismoTierraMedia.db");
+                settings.put(Environment.URL, emi);
                 settings.put(Environment.DIALECT, "com.enigmabridge.hibernate.dialect.SQLiteDialect");
 
                 settings.put(Environment.SHOW_SQL, "true");

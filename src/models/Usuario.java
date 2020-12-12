@@ -1,8 +1,9 @@
 package models;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GeneratorType;
@@ -41,9 +42,16 @@ public class Usuario {
 	@Column (name= "esadmin")
 	private int esadmin;
 	
+	@OneToOne
+	private TipoAtraccion tipo;
+	
 	
 	//Begin Getters and Setters
-
+	
+	public String getTipo() {
+		return tipo.getNombre();
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -16,7 +16,7 @@ public class UsuarioDao {
         Usuario user = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             user = (Usuario) session
-            		.createQuery("FROM Usuario U WHERE U.nombre = :username")
+            		.createQuery("FROM Usuario U, TipoAtraccion WHERE U.nombre = :username")
             		.setParameter("username", username)
             		.uniqueResult();
 
@@ -69,18 +69,5 @@ public class UsuarioDao {
 		return false;
 	}
 	
-	public List<Usuario> todos() {
-
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-        	
-            return (List<Usuario>)
-            		session.createQuery("from Usuario u")
-            		.getResultList();
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return Collections.EMPTY_LIST;
-    }
 
 }
