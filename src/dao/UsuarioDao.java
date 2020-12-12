@@ -14,7 +14,8 @@ public class UsuarioDao {
 	public boolean validar(String username, String password) {
 
         Usuario user = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try{
+        	Session session = HibernateUtil.getSessionFactory().openSession();
             user = (Usuario) session
             		.createQuery("FROM Usuario U WHERE U.nombre = :username")
             		.setParameter("username", username)

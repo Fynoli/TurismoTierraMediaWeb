@@ -8,20 +8,34 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import models.Atraccion;
+import models.Itinerario;
+import models.Itinerario_detalle;
+import models.Promocion;
+import models.Promocion_Atraccion;
+import models.TipoAtraccion;
+import models.Tipo_Descuento_Promocion;
 import models.Usuario;
 
 
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
+    
+    private static final String emilio="jdbc:sqlite:/home/ediffer/java-projects/TurismoTierraMediaWeb/src/TurismoTierraMedia.db";
+    private static final String marce="jdbc:sqlite:F:\\Users\\Marcelo\\Java-ServerTurismoTM\\TurismoTierraMediaWeb\\src\\TurismoTierraMedia.db";
+    private static final String flor="";
+    private static final String antonio="";
 
+    
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
+                
 
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "org.sqlite.JDBC");
-                settings.put(Environment.URL, "jdbc:sqlite:F:\\Users\\Marcelo\\Java-ServerTurismoTM\\TurismoTierraMediaWeb\\src\\TurismoTierraMedia.db");
+                settings.put(Environment.URL, marce);
                 settings.put(Environment.DIALECT, "com.enigmabridge.hibernate.dialect.SQLiteDialect");
 
                 settings.put(Environment.SHOW_SQL, "true");
@@ -32,6 +46,13 @@ public class HibernateUtil {
                 
                 //Clases controladas
                 configuration.addAnnotatedClass(Usuario.class);
+                configuration.addAnnotatedClass(Atraccion.class);
+                configuration.addAnnotatedClass(Itinerario_detalle.class);
+                configuration.addAnnotatedClass(Itinerario.class);
+                configuration.addAnnotatedClass(Promocion.class);
+                //configuration.addAnnotatedClass(Promocion_Atraccion.class); Aun no es digna
+                configuration.addAnnotatedClass(Tipo_Descuento_Promocion.class);
+                configuration.addAnnotatedClass(TipoAtraccion.class);
                 //------
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()

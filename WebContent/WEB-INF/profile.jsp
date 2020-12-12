@@ -60,7 +60,7 @@
 						</tr>
 						<tr class="tr">
 							<th>Preferencia</th>
-							<td><c:out value="${usuario.getFav()}" /></td>
+							<td><c:out value="${usuario.getFav().getNombre()}" /></td>
 						</tr>
 					</table>
 					<p class="has-text-centered mb-4">

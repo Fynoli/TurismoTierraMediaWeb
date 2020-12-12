@@ -1,48 +1,67 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.GeneratorType;
+import javax.persistence.*;
 
 @Entity
 @Table(name="usuario")
 public class Usuario {
-	
-	public Usuario() {
-    }
-	
+
+	public Usuario(String nombre, TipoAtraccion tipoAtraccion, int presupuesto, double tiempo_disponible, String password, int activo, String profile_pic, int esadmin) {
+		this.nombre = nombre;
+		this.tipoAtraccion = tipoAtraccion;
+		this.presupuesto = presupuesto;
+		this.tiempo_disponible = tiempo_disponible;
+		this.password = password;
+		this.activo = activo;
+		this.profile_pic = profile_pic;
+		this.esadmin = esadmin;
+	}
+
 	@Id
-    private int id;
-	
-	@Column (name = "nombre")
-    private String nombre;
-	
-	@Column (name = "password")
-	private String password;
-	
-	@Column (name = "atraccion_favorita")
-	private int fav;
-    
-	@Column (name = "presupuesto")
+	private int id;
+
+	@Column(name = "nombre")
+	private String nombre;
+
+	@ManyToOne
+	@JoinColumn(name = "idtipoatraccion")
+	private TipoAtraccion tipoAtraccion;
+
+	@Column(name = "presupuesto")
 	private int presupuesto;
-	
-	@Column (name = "tiempo_disponible")
-    private double tiempo_disponible;
-	
-	@Column (name= "profile_pic")
-	private String profile_pic;
-	
-	@Column (name= "activo")
+
+	@Column(name = "tiempo_disponible")
+	private double tiempo_disponible;
+
+	@Column(name = "password")
+	private String password;
+
+	@Column(name = "activo")
 	private int activo;
-	
-	@Column (name= "esadmin")
+
+	@Column(name = "profile_pic")
+	private String profile_pic;
+
+
+	@Column(name = "esadmin")
 	private int esadmin;
-	
-	
+
+
+	public Usuario() {
+
+	}
 	//Begin Getters and Setters
+
+
+	public TipoAtraccion getTipoAtraccion() {
+		return tipoAtraccion;
+	}
+
+	public void setTipoAtraccion(TipoAtraccion tipoAtraccion) {
+
+		this.tipoAtraccion = tipoAtraccion;
+	}
+
 
 	public int getId() {
 		return id;
@@ -68,12 +87,12 @@ public class Usuario {
 		this.password = password;
 	}
 
-	public int getFav() {
-		return fav;
+	public TipoAtraccion getFav() {
+		return tipoAtraccion;
 	}
 
-	public void setFav(int fav) {
-		this.fav = fav;
+	public void setFav(TipoAtraccion fav) {
+		this.tipoAtraccion = fav;
 	}
 
 	public int getPresupuesto() {
@@ -115,11 +134,10 @@ public class Usuario {
 	public void setEsadmin(int esadmin) {
 		this.esadmin = esadmin;
 	}
+}
 	
 	
 	
 	//End Getters and setters
-    
 
-    
-}
+
