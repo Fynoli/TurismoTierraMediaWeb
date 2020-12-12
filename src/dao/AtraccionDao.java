@@ -15,10 +15,9 @@ public class AtraccionDao {
 		List<Atraccion> atracciones=new ArrayList<Atraccion>();
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			return (List<Atraccion>) session
-	        		.createQuery("FROM atraccion A WHERE A.costo <= :presupuesto AND A.tiempo <= :tiempo order by A.costo, A.tiempo")
+	        		.createQuery("FROM Atraccion A WHERE A.costo <= :presupuesto AND A.tiempo <= :tiempo order by A.costo desc, A.tiempo desc")
 	        		.setParameter("tiempo", usuario.getTiempo_disponible())
 	        		.setParameter("presupuesto", usuario.getPresupuesto())
-	        		.setParameter("fav", usuario.getFav())
 	        		.getResultList();
 		}catch(Exception e) {
             e.printStackTrace();

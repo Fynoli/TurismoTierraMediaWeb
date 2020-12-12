@@ -56,5 +56,6 @@
 		</div>
 		<!--FIN CARD-->
 	</div>
+	</div>
 </section>
 <jsp:include page="layout/footer.jsp"></jsp:include>

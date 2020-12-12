@@ -21,41 +21,52 @@ import models.Usuario;
 @WebServlet("/compra")
 public class Compra extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	private AtraccionDao aD;
-	private UsuarioDao uDao;
-	
-	public void Init() {
+	private UsuarioDao uD;
+
+	/*
+	 * El metodo init solo se ejecuta cuando el servlet es llamado a traves de
+	 * request.getRequestDispatcher. Como en este caso el servlet es disparado por
+	 * un boton en jsp entonces esto no sucede dejando los DAO's en null
+	 */
+	/*public void Init() {
 		aD = new AtraccionDao();
-		uDao = new UsuarioDao();
+		uD = new UsuarioDao();
+	}*/
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public Compra() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Compra() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-			
-		}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		aD = new AtraccionDao();
+		uD = new UsuarioDao();
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		Usuario usuario = uDao.getUno((Integer) request.getSession().getAttribute("usuarioId"));
+		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
 		List<Atraccion> atracciones = aD.getAtracciones(usuario);
 		request.setAttribute("atracciones", atracciones);
-
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/compra.jsp");
 		dispatcher.forward(request, response);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
 }
