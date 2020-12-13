@@ -1,4 +1,5 @@
 package models;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +11,23 @@ public class Atraccion{
 
     public Atraccion() {
     }
-    @Id
+    
+    
+
+
+	public Atraccion(String nombre, String descripcion, int costo, double tiempo, int cupo) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.costo = costo;
+		this.tiempo = tiempo;
+		this.cupo = cupo;
+		this.activo = 1;
+	}
+
+
+
+
+	@Id
     private int id;
 
     @Column(name = "nombre")
@@ -27,6 +44,9 @@ public class Atraccion{
 
     @Column (name = "cupo")
     private int cupo;
+    
+    @Column(name = "activo")
+	private int activo;
 
     @ManyToOne
     @JoinColumn(name = "tipo_id")
@@ -104,6 +124,40 @@ public class Atraccion{
 
 	public void setPromociones(Set<Promocion> promociones) {
 		this.promociones = promociones;
-	}    
+	}
+
+	public int getActivo() {
+		return activo;
+	}
+
+	public void setActivo(int activo) {
+		this.activo = activo;
+	}
+	
+	/**
+	 * Devuelve los atributos del objeto en un array de strings para ser colocados en un datatable
+	 * @return String[]
+	 */
+	public String[] dumpDataAsArray() {
+		String[] data=new String[4];
+		data[0]=this.nombre;
+		data[1]=this.descripcion;
+		data[2]=Integer.valueOf(this.costo).toString();
+		data[3]=Double.valueOf(this.tiempo).toString();
+		return data;
+	}
     
+	/**
+	 * Devuelve los atributos del objeto en una lista de strings para ser colocados en un datatable
+	 * @return ArrayList<String>
+	 */
+	public ArrayList<String> dumpDataAsArrayList(){
+		ArrayList<String> data=new ArrayList<String>();
+		data.add(this.nombre);
+		data.add(this.descripcion);
+		data.add(Integer.valueOf(this.costo).toString());
+		data.add(Double.valueOf(this.tiempo).toString());
+		
+		return data;
+	}
 }

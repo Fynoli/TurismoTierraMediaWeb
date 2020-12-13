@@ -26,6 +26,9 @@ public class Promocion {
 
     @Column(name="costo")
     private int costo;
+    
+    @Column(name = "activo")
+	private int activo;
 
     @ManyToOne
     @JoinColumn(name = "tipo_promocion")
@@ -103,6 +106,16 @@ public class Promocion {
 	public void setAtracciones(Set<Atraccion> atracciones) {
 		this.atracciones = atracciones;
 	}
+
+	public int getActivo() {
+		return activo;
+	}
+
+	public void setActivo(int activo) {
+		this.activo = activo;
+	}
+	
+	
     
     
 }

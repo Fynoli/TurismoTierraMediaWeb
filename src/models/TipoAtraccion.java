@@ -15,6 +15,9 @@ public class TipoAtraccion {
 
     @Column(name = "nombre")
     private String nombre;
+    
+    @Column(name = "activo")
+	private int activo;
 
     @OneToMany(mappedBy = "tipoAtraccion")
     private List<Usuario> usuarios = new ArrayList<Usuario>();
@@ -53,6 +56,16 @@ public class TipoAtraccion {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+	public int getActivo() {
+		return activo;
+	}
+
+	public void setActivo(int activo) {
+		this.activo = activo;
+	}
+    
+    
 
 
  }
