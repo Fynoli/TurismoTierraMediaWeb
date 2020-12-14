@@ -160,7 +160,7 @@ public class Atraccion {
 
 	@Override
 	public String toString() {
-		return "[Nombre: "+this.nombre+",Descripción: "+this.descripcion+",Costo: "+Integer.valueOf(this.costo).toString()+" monedas,Tiempo: "+Double.valueOf(this.tiempo).toString()+" hs]";
+		return "[Nombre: "+this.nombre+",Tipo: "+this.tipos_atraccion.getNombre()+",Descripción: "+this.descripcion+",Costo: "+Integer.valueOf(this.costo).toString()+" monedas,Tiempo: "+Double.valueOf(this.tiempo).toString()+" hs]";
 	}
 	
 	
