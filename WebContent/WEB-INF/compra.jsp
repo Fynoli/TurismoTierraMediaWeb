@@ -12,6 +12,7 @@
 			<th>Descripcion</th>
 			<th>Costo</th>
 			<th>Tiempo</th>
+			<th>Cupo</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -22,29 +23,18 @@
 	src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 
 <script type="text/javascript">
-	var data = <c:out value="${atracciones}" escapeXml="false"/>;
+	var data = <c:out value="${productos}" escapeXml="false"/>;
 
 	$('#example').DataTable({
 		data : data,
 		order: [],
 		columns : [			    
-			{
-			data : 'Nombre',
-		}, {
-			data : 'Tipo',
-		}, {
-			data : 'Descripcion',
-		}, {
-			data : 'Costo',
-			render : function(data, type, row) {
-				return data + ' Monedas';
-			}
-		}, {
-			data : 'Tiempo',
-			render : function(data, type, row) {
-				return data + ' Hs';
-			}
-		} ]
+			{data : 'Nombre',}, 
+			{data : 'Tipo',},
+			{data : 'Descripcion',},
+			{data : 'Costo', render : function(data, type, row) {return data + ' <img width="20" height="20" src="https://i.ibb.co/gWZdQbP/MonedaME.png">';}}, 
+			{data : 'Tiempo', render : function(data, type, row) {return data + ' Hs';}},
+			{data : 'Cupo',}]
 	});
 </script>
 

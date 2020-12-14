@@ -1,6 +1,5 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -55,6 +54,13 @@ public class Atraccion {
 	@JoinTable(name = "promocion_atraccion", joinColumns = {
 			@JoinColumn(name = "atraccion_id") }, inverseJoinColumns = { @JoinColumn(name = "promocion_id") })
 	Set<Promocion> promociones = new HashSet<>();
+	
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "detalle_itinerario", joinColumns = {
+			@JoinColumn(name = "atraccion_id") }, inverseJoinColumns = { @JoinColumn(name = "usuario_id") })
+	Set<Usuario> usuarios = new HashSet<>();
+	
 
 	/* Begin getters and setters */
 	public int getId() {
@@ -130,37 +136,6 @@ public class Atraccion {
 	}
 	/* End Getters and setters */
 
-	/**
-	 * Devuelve los atributos del objeto en un array de strings para ser colocados
-	 * en un datatable
-	 * 
-	 * @return String[]
-	 */
-	public String[] dumpDataAsArray() {
-		String[] data = new String[4];
-		data[0] = this.nombre;
-		data[1] = this.descripcion;
-		data[2] = Integer.valueOf(this.costo).toString();
-		data[3] = Double.valueOf(this.tiempo).toString();
-		return data;
-	}
-
-	/**
-	 * Devuelve los atributos del objeto en una lista de strings para ser colocados
-	 * en un datatable
-	 * 
-	 * @return ArrayList<String>
-	 */
-	public ArrayList<String> dumpDataAsArrayList() {
-		ArrayList<String> data = new ArrayList<String>();
-		data.add(this.nombre);
-		data.add(this.descripcion);
-		data.add(Integer.valueOf(this.costo).toString());
-		data.add(Double.valueOf(this.tiempo).toString());
-
-		return data;
-	}
-
 	@Override
 	public String toString() {
 		
@@ -176,6 +151,7 @@ public class Atraccion {
         jsonObject.addProperty("Descripcion", getDescripcion());
         jsonObject.addProperty("Costo", getCosto());
         jsonObject.addProperty("Tiempo", getTiempo());
+        jsonObject.addProperty("Cupo", getCupo());
 
         return jsonObject.toString();
     }

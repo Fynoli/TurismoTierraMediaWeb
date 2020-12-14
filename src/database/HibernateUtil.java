@@ -9,7 +9,6 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
 import models.Atraccion;
-import models.Itinerario;
 import models.Itinerario_detalle;
 import models.Promocion;
 import models.TipoAtraccion;
@@ -51,9 +50,7 @@ public class HibernateUtil {
                 configuration.addAnnotatedClass(Usuario.class);
                 configuration.addAnnotatedClass(Atraccion.class);
                 configuration.addAnnotatedClass(Itinerario_detalle.class);
-                configuration.addAnnotatedClass(Itinerario.class);
                 configuration.addAnnotatedClass(Promocion.class);
-                //configuration.addAnnotatedClass(Promocion_Atraccion.class); Aun no es digna
                 configuration.addAnnotatedClass(Tipo_Descuento_Promocion.class);
                 configuration.addAnnotatedClass(TipoAtraccion.class);
                 //------

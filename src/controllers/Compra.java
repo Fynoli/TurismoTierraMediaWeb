@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import dao.AtraccionDao;
+import dao.PromocionDao;
 import dao.UsuarioDao;
 import models.Atraccion;
+import models.Promocion;
 import models.Usuario;
 
 
@@ -27,6 +29,7 @@ public class Compra extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private AtraccionDao aD;
+	private PromocionDao pD;
 	private UsuarioDao uD;
 
 	/*
@@ -55,11 +58,20 @@ public class Compra extends HttpServlet {
 			throws ServletException, IOException {
 		aD = new AtraccionDao();
 		uD = new UsuarioDao();
+		pD = new PromocionDao();
 		
 		List<String> lista = new ArrayList<String>();
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
+		
+		List<Promocion> promociones = pD.getPromocionesFavoritas(usuario);
+		promociones.addAll(pD.getPromocionesNoFavoritas(usuario));
+		
 		List<Atraccion> atracciones = aD.getAtraccionesFavoritas(usuario);
 		atracciones.addAll(aD.getAtraccionesNoFavoritas(usuario));
+		
+		for(Promocion p : promociones) {
+			lista.add(p.generateData());
+		}
 		for(Atraccion a : atracciones) {
 			lista.add(a.generateData());
 		}
@@ -67,7 +79,8 @@ public class Compra extends HttpServlet {
 
 		
 		
-		request.setAttribute("atracciones", lista);
+		request.setAttribute("productos", lista);
+		request.setAttribute("usuario", usuario);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/compra.jsp");
 		dispatcher.forward(request, response);
 

@@ -5,14 +5,17 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.google.gson.JsonObject;
+
 @Entity
 @Table(name = "promocion")
 public class Promocion {
-    private String id;
 
     public Promocion() {
     }
+    
     @Id
+    @Column(name="promocion_id")
     private int promocion_id;
 
     @Column(name="nombre")
@@ -21,27 +24,18 @@ public class Promocion {
     @Column(name="descripcion")
     private String descripcion;
 
-    @Column(name="descuento")
-    private String descuento;
-
     @Column(name="costo")
     private int costo;
     
+    @Column(name="tiempo")
+    private double tiempo;
+    
     @Column(name = "activo")
 	private int activo;
-
-    @ManyToOne
-    @JoinColumn(name = "tipo_promocion")
-    private Tipo_Descuento_Promocion tipo_promo;
     
     @ManyToMany(mappedBy = "promociones")
     private Set<Atraccion> atracciones = new HashSet<>();
     
-    
-
-    public String getId() {
-        return id;
-    }
 
     public void setId(int id) {
         this.promocion_id = id;
@@ -63,32 +57,12 @@ public class Promocion {
         this.descripcion = descripcion;
     }
 
-    public String getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(String descuento) {
-        this.descuento = descuento;
-    }
-
     public int getCosto() {
         return costo;
     }
 
     public void setCosto(int costo) {
         this.costo = costo;
-    }
-
-    public Tipo_Descuento_Promocion getTipo_promo() {
-        return tipo_promo;
-    }
-
-    public void setTipo_promo(Tipo_Descuento_Promocion tipo_promo) {
-        this.tipo_promo = tipo_promo;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
 	public int getPromocion_id() {
@@ -114,8 +88,38 @@ public class Promocion {
 	public void setActivo(int activo) {
 		this.activo = activo;
 	}
+
+	public double getTiempo() {
+		return tiempo;
+	}
+
+	public void setTiempo(double tiempo) {
+		this.tiempo = tiempo;
+	}
 	
+	public int getCupo() {
+		int cupo=Integer.MAX_VALUE;
+		for(Atraccion a: this.getAtracciones()) {
+			if(a.getCupo()<cupo) {
+				cupo=a.getCupo();
+			}
+		}
+		return cupo;
+	}
 	
+	public String generateData() {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("Id", this.getPromocion_id());
+        jsonObject.addProperty("Nombre", getNombre());
+        jsonObject.addProperty("Tipo", "Paquete");
+        jsonObject.addProperty("Descripcion", getDescripcion());
+        jsonObject.addProperty("Costo", getCosto());
+        jsonObject.addProperty("Tiempo", getTiempo());
+        jsonObject.addProperty("Cupo", getCupo());
+
+        return jsonObject.toString();
+    }
     
     
 }

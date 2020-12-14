@@ -1,5 +1,8 @@
 package models;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -26,6 +29,9 @@ public class Usuario {
 	@ManyToOne
 	@JoinColumn(name = "idtipoatraccion")
 	private TipoAtraccion tipoAtraccion;
+	
+	@ManyToMany(mappedBy = "usuarios", fetch = FetchType.EAGER)
+    private Set<Atraccion> atracciones = new HashSet<>();
 
 	@Column(name = "presupuesto")
 	private int presupuesto;
@@ -45,6 +51,8 @@ public class Usuario {
 
 	@Column(name = "esadmin")
 	private int esadmin;
+	
+	
 
 
 	public Usuario() {
@@ -132,6 +140,46 @@ public class Usuario {
 
 	public void setEsadmin(int esadmin) {
 		this.esadmin = esadmin;
+	}
+	
+	
+	public Set<Atraccion> getAtracciones() {
+		return atracciones;
+	}
+
+
+	public void setAtracciones(Set<Atraccion> atracciones) {
+		this.atracciones = atracciones;
+	}
+
+
+	public boolean tieneEstaAtraccion(Atraccion atraccion) {
+		for (Atraccion a: this.getAtracciones()) {
+			if(a.getId()==atraccion.getId()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean tieneAlgoDeEstaPromocion(Promocion promocion) {
+		for (Atraccion adp: promocion.getAtracciones()) {
+			for(Atraccion adu: this.getAtracciones()) {
+				if(adp.getId()==adu.getId()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean leGustaEstaPromocion(Promocion promocion) {
+		for(Atraccion a: promocion.getAtracciones()) {
+			if(a.getId()==this.getFav().getId()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
 	
