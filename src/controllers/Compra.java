@@ -61,8 +61,10 @@ public class Compra extends HttpServlet {
 		List<Atraccion> atracciones = aD.getAtraccionesFavoritas(usuario);
 		atracciones.addAll(aD.getAtraccionesNoFavoritas(usuario));
 		for(Atraccion a : atracciones) {
-			lista.add(a.toString());
+			lista.add(a.generateData());
 		}
+		System.out.println(lista);
+
 		
 		
 		request.setAttribute("atracciones", lista);

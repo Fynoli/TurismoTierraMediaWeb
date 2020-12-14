@@ -37,7 +37,7 @@ public class HibernateUtil {
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "org.sqlite.JDBC");
 
-                settings.put(Environment.URL, emilio);
+                settings.put(Environment.URL, marce);
 
                 settings.put(Environment.DIALECT, "com.enigmabridge.hibernate.dialect.SQLiteDialect");
 
