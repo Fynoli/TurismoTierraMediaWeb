@@ -2,12 +2,9 @@ package dao;
 
 import java.util.Collections;
 import java.util.List;
-
 import org.hibernate.Session;
-
 import database.HibernateUtil;
 import models.Atraccion;
-import models.TipoAtraccion;
 import models.Usuario;
 
 public class AtraccionDao {
@@ -15,7 +12,7 @@ public class AtraccionDao {
 	/**
 	 * Obtiene una atraccion basada en la ID
 	 * @param id
-	 * @return
+	 * @return Atraccion
 	 */
 	public Atraccion getUna(int id) {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -39,10 +36,10 @@ public class AtraccionDao {
 	public List<Atraccion> getAtraccionesFavoritas(Usuario usuario) {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			return (List<Atraccion>) session
-	        		.createQuery("FROM Atraccion A WHERE A.costo <= :presupuesto AND A.tiempo <= :tiempo AND A.tipo_id = :fav AND A.activo = 1 order by A.costo desc, A.tiempo desc")
+	        		.createQuery("FROM Atraccion A WHERE A.costo <= :presupuesto AND A.tiempo <= :tiempo AND A.tipos_atraccion = :fav AND A.activo = 1 order by A.costo desc, A.tiempo desc")
 	        		.setParameter("tiempo", usuario.getTiempo_disponible())
 	        		.setParameter("presupuesto", usuario.getPresupuesto())
-	        		.setParameter("fav", usuario.getFav().getId())
+	        		.setParameter("fav", usuario.getFav())
 	        		.getResultList();
 		}catch(Exception e) {
             e.printStackTrace();
@@ -60,10 +57,10 @@ public class AtraccionDao {
 	public List<Atraccion> getAtraccionesNoFavoritas(Usuario usuario) {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			return (List<Atraccion>) session
-	        		.createQuery("FROM Atraccion A WHERE A.costo <= :presupuesto AND A.tiempo <= :tiempo AND A.tipo_id != :fav AND A.activo = 1 order by A.costo desc, A.tiempo desc")
+	        		.createQuery("FROM Atraccion A WHERE A.costo <= :presupuesto AND A.tiempo <= :tiempo AND A.tipos_atraccion != :fav AND A.activo = 1 order by A.costo desc, A.tiempo desc")
 	        		.setParameter("tiempo", usuario.getTiempo_disponible())
 	        		.setParameter("presupuesto", usuario.getPresupuesto())
-	        		.setParameter("fav", usuario.getFav().getId())
+	        		.setParameter("fav", usuario.getFav())
 	        		.getResultList();
 		}catch(Exception e) {
             e.printStackTrace();
@@ -142,11 +139,32 @@ public class AtraccionDao {
 
     }
 	
-	
-	
-	public void altaDeAtraccion(Atraccion atraccion){
+	/**
+	 * Graba cualquier cambio realizado en la entidad
+	 * @param Atraccion atraccion
+	 */
+	public void updateAtraccion(Atraccion atraccion){
 		try(Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
+            session.update(atraccion);
+            session.getTransaction().commit();
+		}
+		catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+	
+	
+	/**
+	 * Da de alta una atraccion preconstruida en hibernate
+	 * @param Atraccion atraccion
+	 */
+	public void altaDeAtraccion(Atraccion atraccion){
+		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+			int lastId = (int) session.createQuery("select max(A.id) from Atraccion A").uniqueResult();
+            atraccion.setId(lastId++);
+			session.beginTransaction();
             session.persist(atraccion);
             session.getTransaction().commit();
 		}

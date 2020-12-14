@@ -54,6 +54,7 @@ public class Compra extends HttpServlet {
 
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
 		List<Atraccion> atracciones = aD.getAtraccionesFavoritas(usuario);
+		atracciones.addAll(aD.getAtraccionesNoFavoritas(usuario));
 		request.setAttribute("atracciones", atracciones);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/compra.jsp");
 		dispatcher.forward(request, response);
