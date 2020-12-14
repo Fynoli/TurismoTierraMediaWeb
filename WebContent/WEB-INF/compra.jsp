@@ -26,28 +26,21 @@
 
 	$('#example').DataTable({
 		data : data,
-		columnDefs: [
-		    { orderable: false, targets: 0 }
-		  ],
+		order: [],
 		columns : [			    
 			{
 			data : 'Nombre',
-			orderable: false
 		}, {
 			data : 'Tipo',
-			orderable: false
 		}, {
 			data : 'Descripcion',
-			orderable: false
 		}, {
 			data : 'Costo',
-			orderable: false,
 			render : function(data, type, row) {
 				return data + ' Monedas';
 			}
 		}, {
 			data : 'Tiempo',
-			orderable: false,
 			render : function(data, type, row) {
 				return data + ' Hs';
 			}
