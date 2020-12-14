@@ -170,6 +170,7 @@ public class Atraccion {
 	public String generateData() {
 
         JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("Id", getId());
         jsonObject.addProperty("Nombre", getNombre());
         jsonObject.addProperty("Tipo", getTipos_atraccion().getNombre());
         jsonObject.addProperty("Descripcion", getDescripcion());
@@ -178,4 +179,6 @@ public class Atraccion {
 
         return jsonObject.toString();
     }
+	
+	
 }
