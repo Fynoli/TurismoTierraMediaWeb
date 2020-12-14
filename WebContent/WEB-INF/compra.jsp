@@ -24,7 +24,7 @@
 var data = <c:out value="${atracciones}" escapeXml="false"/>;
 
 	$('#example').DataTable( {
-	    data: data
+	    data: data,
 	    columns: [
 	        { data: 'Nombre' },
 	        { data: 'Tipo' },
