@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,10 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+
 import dao.AtraccionDao;
 import dao.UsuarioDao;
 import models.Atraccion;
 import models.Usuario;
+
 
 /**
  * Servlet implementation class Compra
@@ -51,11 +55,17 @@ public class Compra extends HttpServlet {
 			throws ServletException, IOException {
 		aD = new AtraccionDao();
 		uD = new UsuarioDao();
-
+		
+		List<String> lista = new ArrayList<String>();
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
 		List<Atraccion> atracciones = aD.getAtraccionesFavoritas(usuario);
 		atracciones.addAll(aD.getAtraccionesNoFavoritas(usuario));
-		request.setAttribute("atracciones", atracciones);
+		for(Atraccion a : atracciones) {
+			lista.add(a.toString());
+		}
+		
+		
+		request.setAttribute("atracciones", lista);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/compra.jsp");
 		dispatcher.forward(request, response);
 

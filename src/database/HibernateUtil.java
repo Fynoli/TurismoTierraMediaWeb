@@ -21,7 +21,7 @@ public class HibernateUtil {
     private static SessionFactory sessionFactory;
     
 
-    private static final String emilio="jdbc:sqlite:/home/ediffer/java-projects/TurismoTierraMediaWeb/src/TurismoTierraMedia.db";
+    private static final String emilio="jdbc:sqlite:/home/ediffer/java-projects/ttm/TurismoTierraMediaWeb/src/TurismoTierraMedia.db";
     private static final String marce="jdbc:sqlite:F:\\Users\\Marcelo\\Java-ServerTurismoTM\\TurismoTierraMediaWeb\\src\\TurismoTierraMedia.db";
     private static final String flor="";
     private static final String antonio="";
@@ -37,7 +37,7 @@ public class HibernateUtil {
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "org.sqlite.JDBC");
 
-                settings.put(Environment.URL, marce);
+                settings.put(Environment.URL, emilio);
 
                 settings.put(Environment.DIALECT, "com.enigmabridge.hibernate.dialect.SQLiteDialect");
 

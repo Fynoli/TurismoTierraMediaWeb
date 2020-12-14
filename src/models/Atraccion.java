@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "atraccion")
 public class Atraccion {
@@ -160,7 +161,8 @@ public class Atraccion {
 
 	@Override
 	public String toString() {
-		return "[Nombre: "+this.nombre+",Tipo: "+this.tipos_atraccion.getNombre()+",Descripción: "+this.descripcion+",Costo: "+Integer.valueOf(this.costo).toString()+" monedas,Tiempo: "+Double.valueOf(this.tiempo).toString()+" hs]";
+		
+		return "[\""+this.nombre+"\",\""+this.tipos_atraccion.getNombre()+"\",\""+this.descripcion+"\",\""+Integer.valueOf(this.costo).toString()+"\",\""+Double.valueOf(this.tiempo).toString()+"\"]";
 	}
 	
 	
