@@ -40,7 +40,7 @@ public class Atraccion {
 	@JoinColumn(name = "tipo_id")
 	private TipoAtraccion tipos_atraccion;
 
-	@ManyToMany()
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "promocion_atraccion", joinColumns = {
 			@JoinColumn(name = "atraccion_id") }, inverseJoinColumns = { @JoinColumn(name = "promocion_id") })
 	Set<Promocion> promociones = new HashSet<>();

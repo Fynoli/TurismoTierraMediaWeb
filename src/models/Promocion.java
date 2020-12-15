@@ -33,7 +33,7 @@ public class Promocion {
     @Column(name = "activo")
 	private int activo;
     
-    @ManyToMany(mappedBy = "promociones")
+    @ManyToMany(mappedBy = "promociones", fetch = FetchType.EAGER)
     private Set<Atraccion> atracciones = new HashSet<>();
     
 
@@ -50,7 +50,13 @@ public class Promocion {
     }
 
     public String getDescripcion() {
-        return descripcion;
+        String dFinal=this.descripcion;
+        dFinal+="<br>"+"Incluye:"+"<br><ul>";
+        for(Atraccion a: this.getAtracciones()) {
+        	dFinal+="<li>- "+a.getNombre()+"</li>";
+        }
+        dFinal+="</ul>";
+        return dFinal;
     }
 
     public void setDescripcion(String descripcion) {

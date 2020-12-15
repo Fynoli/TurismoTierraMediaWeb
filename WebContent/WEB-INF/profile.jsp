@@ -1,7 +1,7 @@
 <jsp:include page="layout/header.jsp"></jsp:include>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <section class="section">
-	<h1 class="title has-text-centered">Tu perfil</h1>
+	<h1 class="title has-text-centered">Tu perfíl</h1>
 	<div class="container columns">
 		<div
 			class="card column is-half
@@ -10,7 +10,6 @@
 			<div class="columns is-flex is-centered">
 				<figure class="image is-128x128 ">
 					<c:choose>
-
 						<c:when test="${usuario.getProfile_pic()!=null}">
 							<img class="is-rounded" src="${usuario.getProfile_pic()}">
 						</c:when>
@@ -43,19 +42,18 @@
 						</tr>
 					</table>
 					<p class="has-text-centered mb-4">
-						<a href="/itinerario?id={{id que me da Java}} ">Tenes
-							aventuras pendientes!</a>
+						<a href="itinerariousuario">Tenés actividades pendientes!</a>
 					</p>
 
 					<div class="has-text-centered">
-						<a href="compra" class="button is-primary">Comprar Atracciones</a>
+						<a href="compra" class="button is-primary">Comprar actividades</a>
 					</div>
 
+				</div>
+				<!--Fin Card Content-->
 			</div>
-			<!--Fin Card Content-->
+			<!--FIN CARD-->
 		</div>
-		<!--FIN CARD-->
-	</div>
 	</div>
 </section>
 <jsp:include page="layout/footer.jsp"></jsp:include>
