@@ -3,8 +3,6 @@ package dao;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.Query;
-
 import org.hibernate.Session;
 
 import database.HibernateUtil;
@@ -28,6 +26,19 @@ public class UsuarioDao {
         }
         return false;
     }
+	
+	@SuppressWarnings("unchecked")
+	public List<Usuario> all() {	
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			return (List<Usuario>)  session
+	        		.createQuery("FROM Usuario U")
+	        		.getResultList();
+	        			
+		}catch(Exception e) {
+            e.printStackTrace();
+        }
+		return Collections.EMPTY_LIST;
+	}
 	
 	public Usuario getUno(String nombre) {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -69,5 +80,44 @@ public class UsuarioDao {
 		return false;
 	}
 	
+	public boolean baja(Integer id){
+
+		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+			session.beginTransaction();
+			Usuario usuario1 = (Usuario) session
+					.createQuery("FROM Usuario U WHERE U.id = :Id")
+					.setParameter("Id", id)
+					.uniqueResult();
+			usuario1.setActivo(0);
+			session.saveOrUpdate(usuario1);
+			System.out.println("El usuario eliminado es:" + usuario1.getNombre());
+			session.getTransaction().commit();
+			return true;
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+	
+	public boolean update(Usuario usuarioTempo, Integer id){
+
+		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+			session.beginTransaction();
+			Usuario usuario1 = (Usuario) session
+					.createQuery("FROM Usuario U WHERE U.id = :Id")
+					.setParameter("Id", id)
+					.uniqueResult();
+			if (!usuario1.equals(usuarioTempo))
+				session.saveOrUpdate(usuario1);
+				System.out.println("El usuario actualizado:" + usuario1.getNombre());
+				session.getTransaction().commit();
+			return true;
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return false;
+
+	}
 
 }

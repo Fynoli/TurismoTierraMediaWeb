@@ -75,7 +75,6 @@ public class Compra extends HttpServlet {
 		for(Atraccion a : atracciones) {
 			lista.add(a.generateData());
 		}
-		System.out.println(lista);
 
 		
 		

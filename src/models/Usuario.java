@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.google.gson.JsonObject;
+
 @Entity
 @Table(name="usuario")
 public class Usuario {
@@ -181,6 +183,18 @@ public class Usuario {
 		}
 		return false;
 	}
+	
+	public String generateData() {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("Id", getId());
+        jsonObject.addProperty("Nombre", getNombre());
+        jsonObject.addProperty("Preferencia", getTipoAtraccion().getNombre());
+        jsonObject.addProperty("Presupuesto", getPresupuesto());
+        jsonObject.addProperty("Tiempo Disponible", getTiempo_disponible());
+      
+        return jsonObject.toString();
+    }
 }
 	
 	

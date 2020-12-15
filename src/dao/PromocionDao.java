@@ -7,7 +7,6 @@ import java.util.List;
 import org.hibernate.Session;
 
 import database.HibernateUtil;
-import models.Atraccion;
 import models.Promocion;
 import models.Usuario;
 

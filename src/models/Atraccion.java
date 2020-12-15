@@ -15,16 +15,6 @@ public class Atraccion {
 	public Atraccion() {
 	}
 
-	public Atraccion(String nombre, String descripcion, int costo, double tiempo, int cupo, int tipo_id) {
-		this.id = 0;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.costo = costo;
-		this.tiempo = tiempo;
-		this.cupo = cupo;
-		this.activo = 1;
-	}
-
 	@Id
 	private int id;
 

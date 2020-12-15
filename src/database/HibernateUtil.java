@@ -12,7 +12,6 @@ import models.Atraccion;
 import models.Itinerario_detalle;
 import models.Promocion;
 import models.TipoAtraccion;
-import models.Tipo_Descuento_Promocion;
 import models.Usuario;
 
 
@@ -51,7 +50,6 @@ public class HibernateUtil {
                 configuration.addAnnotatedClass(Atraccion.class);
                 configuration.addAnnotatedClass(Itinerario_detalle.class);
                 configuration.addAnnotatedClass(Promocion.class);
-                configuration.addAnnotatedClass(Tipo_Descuento_Promocion.class);
                 configuration.addAnnotatedClass(TipoAtraccion.class);
                 //------
 

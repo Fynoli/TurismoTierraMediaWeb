@@ -120,6 +120,25 @@ public class Promocion {
 
         return jsonObject.toString();
     }
+	
+	/**
+	 * Devuelje el json de la promoción incluyendo su estado logico
+	 * @return String
+	 */
+	public String generateDataAdmin() {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("Id", this.getPromocion_id());
+        jsonObject.addProperty("Nombre", getNombre());
+        jsonObject.addProperty("Tipo", "Paquete");
+        jsonObject.addProperty("Descripcion", getDescripcion());
+        jsonObject.addProperty("Costo", getCosto());
+        jsonObject.addProperty("Tiempo", getTiempo());
+        jsonObject.addProperty("Cupo", getCupo());
+        jsonObject.addProperty("Activo", getActivo());
+
+        return jsonObject.toString();
+    }
     
     
 }
