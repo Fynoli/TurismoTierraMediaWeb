@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 
 import dao.TipoAtraccionDao;
 import dao.UsuarioDao;
@@ -24,7 +25,7 @@ public class UsuarioActualizar extends HttpServlet {
 	
 	private UsuarioDao uD;
 	private TipoAtraccionDao aD;
-       
+      Usuario uModificar = new Usuario();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -42,6 +43,21 @@ public class UsuarioActualizar extends HttpServlet {
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
 			
 		if(usuario.getEsadmin()==1) {
+		     uModificar = uD.getUno(Integer.parseInt(request.getParameter("id")));
+			
+			request.setAttribute("uModificar", uModificar);
+			
+//			request.setAttribute("usuarioId", uModificar.getId());
+//			request.setAttribute("nombre", uModificar.getNombre());
+//			
+//			request.setAttribute("preferencia", uModificar.getTipoAtraccion().getNombre());	
+//			
+//			request.setAttribute("presupuesto", uModificar.getPresupuesto());
+//			request.setAttribute("tiempoDisp", uModificar.getTiempo_disponible());
+//			request.setAttribute("password", uModificar.getPassword());
+//			request.setAttribute("isActivo", uModificar.getActivo());
+//			request.setAttribute("isAdmin", uModificar.getEsadmin());
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/usuario_editar.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -49,9 +65,7 @@ public class UsuarioActualizar extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/no_permitido.jsp");
 			dispatcher.forward(request, response);
 		}
-		
-		
-		
+					
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -59,9 +73,11 @@ public class UsuarioActualizar extends HttpServlet {
 		uD = new UsuarioDao();
 		aD = new TipoAtraccionDao();
 		
-		Integer uId = Integer.parseInt(request.getParameter("usuarioId"));
+		Integer uId = uModificar.getId();
 		String nombre = (String) request.getParameter("nombre");
-		Integer idTipoAtraccion = Integer.parseInt( request.getParameter("idTipoA"));
+		
+		Integer idTipoAtraccion = uModificar.getTipoAtraccion().getId();
+		
 		Integer presupuesto = Integer.parseInt( request.getParameter("presupuesto"));
 		Double tiempoDisponible = Double.parseDouble(request.getParameter("tiempoDisp"));
 		String password = (String) request.getParameter("password");
@@ -80,8 +96,13 @@ public class UsuarioActualizar extends HttpServlet {
 		
         uD.update(usuarioNuevo, uId);
  		
- 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/usuarios.jsp");
-		dispatcher.forward(request, response);
+ 		RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioslist");
+	    dispatcher.forward(request, response);
+		
+	
+		
+		
+		
 		
 	}
 

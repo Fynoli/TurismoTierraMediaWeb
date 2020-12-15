@@ -100,24 +100,14 @@ public class UsuarioDao {
 
 	}
 	
-	public boolean update(Usuario usuarioTempo, Integer id){
+	public void update(Usuario usuario){
 
 		try(Session session = HibernateUtil.getSessionFactory().openSession()){
 			session.beginTransaction();
-			Usuario usuario1 = (Usuario) session
-					.createQuery("FROM Usuario U WHERE U.id = :Id")
-					.setParameter("Id", id)
-					.uniqueResult();
-			if (!usuario1.equals(usuarioTempo))
-				session.saveOrUpdate(usuario1);
-				System.out.println("El usuario actualizado:" + usuario1.getNombre());
-				session.getTransaction().commit();
-			return true;
+			session.update(usuario);
+			session.getTransaction().commit();
 		}catch (Exception e){
 			e.printStackTrace();
 		}
-		return false;
-
 	}
-
 }

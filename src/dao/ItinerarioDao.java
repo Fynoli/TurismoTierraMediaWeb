@@ -28,4 +28,16 @@ public class ItinerarioDao {
         System.out.println("sale vacia");
         return Collections.EMPTY_LIST;
     }
+    
+    public void agregarProducto(Itinerario_detalle itinerario) {
+    	try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			int lastId = (int) session.createQuery("select max(I.id) from Itinerario_detalle I").uniqueResult();
+			itinerario.setId(lastId++);
+			session.beginTransaction();
+			session.persist(itinerario);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
 }

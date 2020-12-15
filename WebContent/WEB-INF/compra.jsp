@@ -66,7 +66,7 @@
 									data : 'Cupo',
 								},
 								{
-									"defaultContent" : "<button class='button  is-link'>Comprar</button>"
+									"defaultContent" : "<a href='realizarcompra?Id=`${data.Id}`&Tipo=`${data.Tipo}`' class='button is-link'> Comprar</a>"
 								} ]
 					});
 </script>

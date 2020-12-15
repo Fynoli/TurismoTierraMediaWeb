@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 @Entity
 @Table(name = "detalle_itinerario")
 public class Itinerario_detalle {
+	
 	public Itinerario_detalle() {
 	}
 
