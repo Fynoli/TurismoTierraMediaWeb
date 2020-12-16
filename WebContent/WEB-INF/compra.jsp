@@ -74,8 +74,14 @@
 	$(document).on('click', '#buttonComprar', function(event) {
         var data = table.row($(this).parents("tr")).data();
         event.preventDefault();
-        document.body.innerHTML='<form action="realizarcompra" id="cp" name="compra" method="post"><input type="text" name="idProducto" value="'+data.Id+'" /><input type="text" name="tipoProducto" value="'+data.Tipo+'" /></form>';
+        
+        
+        var hidenform=document.createElement('div');
+        hidenform.innerHTML='<form action="realizarcompra" class="is-invisible" id="cp" name="compra" method="post"><input type="text" name="idProducto" value="'+data.Id+'" /><input type="text" name="tipoProducto" value="'+data.Tipo+'" /></form>';
+        var ex=document.getElementById("example");
+        ex.appendChild(hidenform);
         document.getElementById("cp").submit();
+        
         console.log(data);
     });
 	

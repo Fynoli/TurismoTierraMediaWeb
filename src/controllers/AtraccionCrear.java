@@ -1,6 +1,10 @@
 package controllers;
 
-import java.io.IOException;
+import dao.AtraccionDao;
+import dao.TipoAtraccionDao;
+import dao.UsuarioDao;
+import models.Atraccion;
+import models.Usuario;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,11 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import dao.AtraccionDao;
-import dao.TipoAtraccionDao;
-import models.Atraccion;
-import models.Usuario;
+import java.io.IOException;
 
 /**
  * Servlet implementation class AtraccionCrear
@@ -23,6 +23,7 @@ public class AtraccionCrear extends HttpServlet {
        
 	private AtraccionDao aD;
 	private TipoAtraccionDao aTD;
+	private UsuarioDao uD;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -35,10 +36,12 @@ public class AtraccionCrear extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Usuario usuario = (Usuario) request.getSession().getAttribute("isAdmin");
+		uD = new UsuarioDao();
+		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
+
 		
 		if(usuario.getEsadmin()==1) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crear_atraccion.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/atraccion_crear.jsp");
 			dispatcher.forward(request, response);
 		}
 		else {
@@ -51,15 +54,15 @@ public class AtraccionCrear extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*       */
 		
-		String nombre = (String) request.getParameter("nombre");
+		String nombre = request.getParameter("nombre");
 		Integer isActivo = Integer.parseInt(request.getParameter("isActivo"));
 		Integer costo = Integer.parseInt(request.getParameter("costo"));
 		Integer cupo = Integer.parseInt(request.getParameter("cupo"));
-		String descripcion = (String) request.getParameter("description");
+		String descripcion = request.getParameter("descripcion");
 		Double tiempo = Double.parseDouble(request.getParameter("tiempo"));
 	
 		
-		Integer tipoAtraccion = Integer.parseInt(request.getParameter("tipoAtraccion")); 
+		Integer tipoAtraccion = Integer.parseInt(request.getParameter("tipo"));
 		
 		aD = new AtraccionDao();
 		aTD = new TipoAtraccionDao();
@@ -76,7 +79,8 @@ public class AtraccionCrear extends HttpServlet {
 		
 		aD.altaDeAtraccion(atraccionNueva);
 		
-		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("atraccionlist");
+		dispatcher.forward(request, response);
 		
 	}
 

@@ -38,8 +38,7 @@ public class RealizarCompra extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("compra");
-		dispatcher.forward(request, response);
+		
 	}
 
 	/**
@@ -79,6 +78,11 @@ public class RealizarCompra extends HttpServlet {
 			usuario.setPresupuesto(usuario.getPresupuesto()-producto.getAtraccion().getCosto());
 			usuario.setTiempo_disponible(usuario.getTiempo_disponible()-producto.getAtraccion().getTiempo());
 			uD.update(usuario);
+			
+			/*Se le quita 1 de cupo a la atraccion comprada*/
+			producto.getAtraccion().setCupo(producto.getAtraccion().getCupo()-1);
+			aD.updateAtraccion(producto.getAtraccion());
+			
 		}
 		/*El producto comprado es un paquete*/
 		else {
@@ -89,6 +93,10 @@ public class RealizarCompra extends HttpServlet {
 				
 				/*Se agrega una entrada por cada atraccion del paquete comprado*/
 				iD.agregarProducto(producto);
+				
+				/*Se le quita 1 de cupo a la atraccion comprada*/
+				producto.getAtraccion().setCupo(producto.getAtraccion().getCupo()-1);
+				aD.updateAtraccion(producto.getAtraccion());
 			}
 			/*Se le quita el tiempo y dinero gastado al comprador*/
 			usuario.setPresupuesto(usuario.getPresupuesto()-producto.getPromo().getCosto());
@@ -96,8 +104,7 @@ public class RealizarCompra extends HttpServlet {
 			uD.update(usuario);
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("compra");
-		dispatcher.forward(request, response);
+		response.sendRedirect("compra");
 	}
 
 }
