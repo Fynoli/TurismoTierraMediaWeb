@@ -187,7 +187,7 @@ public class PromocionDao {
 	public void altaDePromocion(Promocion promocion){
 		try(Session session = HibernateUtil.getSessionFactory().openSession()){
 			int lastId = (int) session.createQuery("select max(P.id) from Promocion P").uniqueResult();
-            promocion.setId(lastId++);
+            promocion.setId(++lastId);
 			session.beginTransaction();
             session.persist(promocion);
             session.getTransaction().commit();

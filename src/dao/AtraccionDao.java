@@ -181,7 +181,7 @@ public class AtraccionDao {
 	public void altaDeAtraccion(Atraccion atraccion) {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			int lastId = (int) session.createQuery("select max(A.id) from Atraccion A").uniqueResult();
-			atraccion.setId(lastId++);
+			atraccion.setId(++lastId);
 			session.beginTransaction();
 			session.persist(atraccion);
 			session.getTransaction().commit();

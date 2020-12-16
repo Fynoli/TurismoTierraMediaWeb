@@ -1,8 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,16 +15,16 @@ import models.Promocion;
 import models.Usuario;
 
 /**
- * Servlet implementation class ListaDePromo
+ * Servlet implementation class AltaLogicaPromo
  */
-@WebServlet("/listadepromo")
-public class ListaDePromo extends HttpServlet {
+@WebServlet("/altalogicapromo")
+public class AltaLogicaPromo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListaDePromo() {
+    public AltaLogicaPromo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,17 +39,12 @@ public class ListaDePromo extends HttpServlet {
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
 
 		if (usuario.getEsadmin() == 1) {
-			List<String> lista = new ArrayList<String>();
-			PromocionDao pD= new PromocionDao();
-			List<Promocion> promociones = pD.getPromociones();
-			for(Promocion p : promociones) {
-				lista.add(p.generateDataAdmin());
-			}
+			PromocionDao pD=new PromocionDao();
+			Promocion promo=pD.getUna(Integer.parseInt((String) request.getParameter("id")));
+			promo.setActivo(1);
+			pD.updatePromocion(promo);
 			
-			
-			request.setAttribute("promociones", lista);
-				
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/promocionlist.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("listadepromo");
 			dispatcher.forward(request, response);
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/no_permitido.jsp");

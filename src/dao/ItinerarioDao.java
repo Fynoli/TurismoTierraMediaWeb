@@ -32,7 +32,8 @@ public class ItinerarioDao {
     public void agregarProducto(Itinerario_detalle itinerario) {
     	try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			int lastId = (int) session.createQuery("select max(I.id) from Itinerario_detalle I").uniqueResult();
-			itinerario.setId(lastId++);
+			itinerario.setId(++lastId);
+			System.out.println(itinerario.getId()+" "+itinerario.getAtraccion()+" "+itinerario.getPromo()+" "+itinerario.getUsuario());
 			session.beginTransaction();
 			session.persist(itinerario);
 			session.getTransaction().commit();

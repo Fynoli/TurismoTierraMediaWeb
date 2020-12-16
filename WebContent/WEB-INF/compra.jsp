@@ -66,9 +66,20 @@
 									data : 'Cupo',
 								},
 								{
-									"defaultContent" : "<a href='realizarcompra?Id=`${data.Id}`&Tipo=`${data.Tipo}`' class='button is-link'> Comprar</a>"
+									"defaultContent" : '<button class="button is-link" id="buttonComprar">Comprar</button>'
 								} ]
 					});
+	
+	var table = $('#example').DataTable()
+	$(document).on('click', '#buttonComprar', function(event) {
+        var data = table.row($(this).parents("tr")).data();
+        event.preventDefault();
+        document.body.innerHTML='<form action="realizarcompra" id="cp" name="compra" method="post"><input type="text" name="idProducto" value="'+data.Id+'" /><input type="text" name="tipoProducto" value="'+data.Tipo+'" /></form>';
+        document.getElementById("cp").submit();
+        console.log(data);
+    });
+	
+
 </script>
 
 

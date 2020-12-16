@@ -42,7 +42,7 @@ public class AtraccionActualizar extends HttpServlet {
 		
 		
 		if(usuario.getEsadmin()==1) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crear_atraccion.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/atraccion_editar.jsp");
 			dispatcher.forward(request, response);
 		}
 		else {

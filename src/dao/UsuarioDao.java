@@ -71,7 +71,7 @@ public class UsuarioDao {
 			int lastId = (int) session.createQuery("select max(u.id) from Usuario u").uniqueResult();
 			usuario.setId(++lastId);
 			
-			session.save(usuario);
+			session.persist(usuario);
 		    session.getTransaction().commit();
 			return true;
         } catch (Exception e) {

@@ -39,8 +39,7 @@ public class BajaDePromo extends HttpServlet {
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
 
 		if (usuario.getEsadmin() == 1) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/borrar_promo.jsp");
-			dispatcher.forward(request, response);
+			doPost(request,response);
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/no_permitido.jsp");
 			dispatcher.forward(request, response);
@@ -54,10 +53,10 @@ public class BajaDePromo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*Se obtiene la promo correspondiente y se da de baja en la DB*/
 		PromocionDao pD= new PromocionDao();
-		Promocion promo = pD.getUna(Integer.parseInt(request.getParameter("id")));
+		Promocion promo = pD.getUna(Integer.parseInt((String) request.getParameter("id")));
 		pD.bajaPromocion(promo);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/listadepromo");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listadepromo");
 		dispatcher.forward(request, response);
 	}
 

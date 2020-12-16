@@ -38,9 +38,8 @@ public class RealizarCompra extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("compra");
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -52,10 +51,10 @@ public class RealizarCompra extends HttpServlet {
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
 		
 		/*Necesario para saber que producto fue comprado*/
-		Integer idProducto= Integer.parseInt((String) request.getAttribute("idProducto"));
+		Integer idProducto= Integer.parseInt((String) request.getParameter("idProducto"));
 		
 		/*Esto es necesario para distinguir paquetes de atracciones simples*/
-		String tipoProducto= (String) request.getAttribute("tipoProducto");
+		String tipoProducto= (String) request.getParameter("tipoProducto");
 		
 		/*Se obtiene el itinerario del usuario que realiza la compra*/
 		ItinerarioDao iD= new ItinerarioDao();
