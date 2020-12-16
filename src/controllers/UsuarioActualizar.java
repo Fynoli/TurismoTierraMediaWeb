@@ -94,7 +94,7 @@ public class UsuarioActualizar extends HttpServlet {
 		usuarioNuevo.setActivo(isActivo);
 		usuarioNuevo.setEsadmin(isAdmin);
 		
-        uD.update(usuarioNuevo, uId);
+        uD.update(usuarioNuevo);
  		
  		RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioslist");
 	    dispatcher.forward(request, response);
