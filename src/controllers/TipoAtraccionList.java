@@ -1,6 +1,8 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,24 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.AtraccionDao;
+import dao.TipoAtraccionDao;
 import dao.UsuarioDao;
+import models.TipoAtraccion;
 import models.Usuario;
 
+
 /**
- * Servlet implementation class AtraccionBaja
+ * Servlet implementation class TipoAtraccionList
  */
-@WebServlet("/atraccionbaja")
-public class AtraccionBaja extends HttpServlet {
+@WebServlet("/tipoatraccionlist")
+public class TipoAtraccionList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private AtraccionDao aD;
-	private UsuarioDao uD;
-       
+	private TipoAtraccionDao tD;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AtraccionBaja() {
+    public TipoAtraccionList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,30 +36,32 @@ public class AtraccionBaja extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		uD = new UsuarioDao();
+	        tD = new TipoAtraccionDao();
 		
-		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
-		
-		if(usuario.getEsadmin()==1) {
-			aD = new AtraccionDao();
-			Integer idAtraccion = Integer.parseInt(request.getParameter("id"));
-			aD.bajaAtraccion(aD.getUna(idAtraccion));
+		  //  Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
+		    
+			List<String> lista = new ArrayList<String>();
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("atraccionlist");
+			List<TipoAtraccion> tipoAtracciones = tD.getTiposAtracciones();
+			
+			for(TipoAtraccion a : tipoAtracciones) {
+				if(a.getActivo()!=0) {
+				lista.add(a.generateData());
+				}
+			}
+			
+			System.out.println(lista);
+			request.setAttribute("tipoAtracciones", lista);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/tipoatracciones.jsp");
 			dispatcher.forward(request, response);
-		}
-		else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/no_permitido.jsp");
-			dispatcher.forward(request, response);
-		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

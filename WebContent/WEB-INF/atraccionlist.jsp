@@ -3,16 +3,19 @@
 <div class="section">
     <h1 class="title has-text-centered">Listado de Atracciones</h1>
 </div>
+<div>
+<a class="button is-link" href="atraccioncrear">Crear una nueva</a>
+</div>
 <table id="example" class="display table">
     <thead class="thead">
     <tr>
         <th>Nombre</th>
-        <th>Tipo de Atraccion</th>
+        <th>Tipo de Atracción</th>
         <th>Costo</th>
         <th>Tiempo</th>
         <th>Cupo</th>
-        <th>Accion</th>
-        <th>Boton</th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -34,8 +37,7 @@
 
                     {data : 'Costo',
                         render : function(data, type, row) {
-                            return data
-                                + ' <img width="20" height="20" src="https://i.ibb.co/gWZdQbP/MonedaME.png">';
+                            return '<img width="20" height="20" align="left" src="https://i.ibb.co/gWZdQbP/MonedaME.png">'+data;
                         }
                     },
                     {data : 'Tiempo',
@@ -44,29 +46,45 @@
                         }
                     },
                     {data : 'Cupo',},
-                    {data : 'Accion',
+                    {data : 'Editar',
                         render : function(data, type, row) {
-                            return '<a href="atraccionbaja">Eliminar</a>'
+                            return '<button id="buttonEditar">Editar</button>'
                         }
                     },
-                    {data : 'Boton',
+                    {data : 'Activo',
                         render : function(data, type, row) {
-                            return '<button id="button">Editar</button>'
+                            if(data==1){
+                            	return '<button id="buttonEliminar">Eliminar</button>'
+                            }
+                            else{
+                            	return '<button id="buttonLevantar">Levantar</button>'
+                            }
                         }
                     }, ]
             });
 
     var table = $('#example').DataTable()
-    $(document).on('click', '#button', function(event) {
+    $(document).on('click', '#buttonEditar', function(event) {
         var data = table.row($(this).parents("tr")).data();
         event.preventDefault()
         window.location.href="./atraccionactualizar?id="+data.Id
-
-
         console.log(data);
-
-        //	window.location.replace("usuario_editar?id=" + data.Id);
-
+    });
+    
+    var table = $('#example').DataTable()
+    $(document).on('click', '#buttonEliminar', function(event) {
+        var data = table.row($(this).parents("tr")).data();
+        event.preventDefault()
+        window.location.href="./atraccionbaja?id="+data.Id
+        console.log(data);
+    });
+    
+    var table = $('#example').DataTable()
+    $(document).on('click', '#buttonLevantar', function(event) {
+        var data = table.row($(this).parents("tr")).data();
+        event.preventDefault()
+        window.location.href="./atraccionaltalogica?id="+data.Id
+        console.log(data);
     });
 
 </script>

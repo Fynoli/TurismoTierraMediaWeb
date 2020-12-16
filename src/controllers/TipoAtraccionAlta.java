@@ -9,65 +9,84 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import crypto.Blowfish;
 import dao.TipoAtraccionDao;
 import dao.UsuarioDao;
 import models.TipoAtraccion;
 import models.Usuario;
 
 /**
- * Servlet implementation class TipoAtraccionActualizar
+ * Servlet implementation class TipoAtraccionAlta
  */
-@WebServlet("/tipoatraccionactualizar")
-public class TipoAtraccionActualizar extends HttpServlet {
+@WebServlet("/tipoatraccionalta")
+public class TipoAtraccionAlta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	
-	private TipoAtraccionDao aD;
-	private UsuarioDao uD;
-    TipoAtraccion tipoModificar = new TipoAtraccion();
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TipoAtraccionActualizar() {
+	private TipoAtraccionDao aTD;
+	
+    public TipoAtraccionAlta() {
         super();
         // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		aD = new TipoAtraccionDao();
-		uD = new UsuarioDao();
+	     
+		
+		
+		
+		UsuarioDao uD = new UsuarioDao();
 		
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
 			
 		if(usuario.getEsadmin()==1) {
-		     tipoModificar = aD.getUno(Integer.parseInt(request.getParameter("id")));
-			
-			request.setAttribute("tipoModificar", tipoModificar);
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/tipoatraccion_editar.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/tipoatraccion_crear.jsp");
 			dispatcher.forward(request, response);
 		}else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/no_permitido.jsp");
 			dispatcher.forward(request, response);
 		}
+		
+		
+//		Usuario usuario = (Usuario) request.getSession().getAttribute("isAdmin");
+//		
+//		if(usuario.getEsadmin()==1) {
+//			
+//			
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/tipoatraccion_crear.jsp");
+//			dispatcher.forward(request, response);
+//		}
+//		else {
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/no_permitido.jsp");
+//			dispatcher.forward(request, response);
+//		}}
 	}
-
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		aD = new TipoAtraccionDao();
+		aTD = new TipoAtraccionDao();
 		
-		Integer tId = tipoModificar.getId();
+	
 		
-		System.out.println("Flor" + tId);
 		String nombre = (String) request.getParameter("nombre");
 		
 		
-		tipoModificar.setNombre(nombre);
-			
-        aD.update(tipoModificar);
+	
+		
+		TipoAtraccion tipoAtraccion = new TipoAtraccion();
+		
+		tipoAtraccion.setNombre(nombre);
+		tipoAtraccion.setActivo(1); 
+		
+		
+ 		aTD.crear(tipoAtraccion);
  		
  		RequestDispatcher dispatcher = request.getRequestDispatcher("TipoAtraccionList");
-	    dispatcher.forward(request, response);
+		dispatcher.forward(request, response);
 	}
 
 }

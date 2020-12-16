@@ -142,6 +142,7 @@ public class Atraccion {
         jsonObject.addProperty("Costo", getCosto());
         jsonObject.addProperty("Tiempo", getTiempo());
         jsonObject.addProperty("Cupo", getCupo());
+        jsonObject.addProperty("Activo", this.getActivo());
 
         return jsonObject.toString();
     }

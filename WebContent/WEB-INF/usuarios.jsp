@@ -3,6 +3,9 @@
 <div class="section">
 	<h1 class="title has-text-centered">Usuarios disponibles</h1>
 </div>
+<div>
+<a class="button is-link" href="usuariocrear">Crear nuevo usuario</a>
+</div>
 <table id="example" class="display table">
 	<thead class="thead">
 		<tr>
@@ -10,8 +13,8 @@
 			<th>Preferencia</th>
 			<th>Presupuesto</th>
 			<th>Tiempo Disponible</th>
-			<th>Accion</th>
-			<th>Boton</th>
+			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -49,22 +52,25 @@
 										return data + ' Hs';
 									}
 								},
-								{
-									data : 'Accion',
-									render : function(data, type, row) {
-										return '<a href="usuarioactualizar">Modificar</a>'
-									}
-								},
-								{
-									data : 'Boton',
-									render : function(data, type, row) {
-										return '<button id="button">Clickr</button>'
-									}
-								}, ]
+								{data : 'Editar',
+			                        render : function(data, type, row) {
+			                            return '<button id="buttonEditar">Editar</button>'
+			                        }
+			                    },
+			                    {data : 'Activo',
+			                        render : function(data, type, row) {
+			                            if(data==1){
+			                            	return '<button id="buttonEliminar">Eliminar</button>'
+			                            }
+			                            else{
+			                            	return '<button id="buttonLevantar">Levantar</button>'
+			                            }
+			                        }
+			                    }, ]
 					});
 
 	var table = $('#example').DataTable()
-	$(document).on('click', '#button', function(event) {
+	$(document).on('click', '#buttonEditar', function(event) {
 		var data = table.row($(this).parents("tr")).data();
 		event.preventDefault()
 		window.location.href="./usuarioactualizar?id="+data.Id
@@ -75,6 +81,22 @@
 	//	window.location.replace("usuario_editar?id=" + data.Id);
 		
 	});
+	
+	var table = $('#example').DataTable()
+    $(document).on('click', '#buttonEliminar', function(event) {
+        var data = table.row($(this).parents("tr")).data();
+        event.preventDefault()
+        window.location.href="./usuariobaja?id="+data.Id
+        console.log(data);
+    });
+    
+    var table = $('#example').DataTable()
+    $(document).on('click', '#buttonLevantar', function(event) {
+        var data = table.row($(this).parents("tr")).data();
+        event.preventDefault()
+        window.location.href="./usuarioaltalogica?id="+data.Id
+        console.log(data);
+    });
 		
 </script>
 

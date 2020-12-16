@@ -1,8 +1,7 @@
 <jsp:include page="layout/header.jsp"></jsp:include>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <section class="section has-bg-map">
-    <h2 class="title has-text-centered has-text-warning-light">Explora
-        un fantÃ¡stico mundo!</h2>
+    <h2 class="title has-text-centered has-text-warning-light">Crea una nueva atracción</h2>
 
     <div class="container mt-6">
 
@@ -12,7 +11,7 @@
                 <div class="card is-smooth">
                     <div class="card-header">
                         <h2 class="card-header-title subtitle has-text-warning-light">
-                            Crear Atraccion
+                            Crear Atracción
                         </h2>
                     </div>
                     <div class="card-content">
@@ -29,7 +28,7 @@
                             </div>
 
                             <div class="field">
-                                <label class="label has-text-warning-light" for="descripcion">Descripcion</label>
+                                <label class="label has-text-warning-light" for="descripcion">Descripción</label>
                                 <div class="control has-icons-left">
                                     <input type="text" class="input" name="descripcion" id="descripcion" placeholder="Descripcion">
                                     <span class="icon is-small is-left"> <i
@@ -49,8 +48,7 @@
                             </div>
 
                             <div class="field">
-                                <label class="label has-text-warning-light" for="tiempo">Tiempo
-                                    Disponible</label>
+                                <label class="label has-text-warning-light" for="tiempo">Tiempo</label>
                                 <div class="control has-icons-left">
                                     <input type="text" class="input" name="tiempo"
                                            id="tiempo"placeholder="Tiempo"> <span class="icon is-small is-left">
@@ -77,9 +75,8 @@
 									</span>
                                 </div>
                             </div>
-
                             <div class="field">
-                                <label class="label has-text-warning-light" for="tipo">Tipo de Atraccion</label>
+                                <label class="label has-text-warning-light" for="tipo">Tipo de Atracción</label>
                                 <div class="control has-icons-left">
                                     <input type="text" class="input" name="tipo"
                                            id="tipo" placeholder="Ingrese el id en numero por ahora"> <span class="icon is-small is-left">

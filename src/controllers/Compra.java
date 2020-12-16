@@ -63,16 +63,22 @@ public class Compra extends HttpServlet {
 		List<String> lista = new ArrayList<String>();
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
 		
-		List<Promocion> promociones = pD.getPromocionesFavoritas(usuario);
-		promociones.addAll(pD.getPromocionesNoFavoritas(usuario));
+		List<Promocion> promocionesFav = pD.getPromocionesFavoritas(usuario);
+		List<Atraccion> atraccionesFav = aD.getAtraccionesFavoritas(usuario);
+		List<Promocion> promocionesNoFav = pD.getPromocionesNoFavoritas(usuario);
+		List<Atraccion> atraccionesNoFav = aD.getAtraccionesNoFavoritas(usuario);
 		
-		List<Atraccion> atracciones = aD.getAtraccionesFavoritas(usuario);
-		atracciones.addAll(aD.getAtraccionesNoFavoritas(usuario));
 		
-		for(Promocion p : promociones) {
+		for(Promocion p : promocionesFav) {
 			lista.add(p.generateData());
 		}
-		for(Atraccion a : atracciones) {
+		for(Atraccion a : atraccionesFav) {
+			lista.add(a.generateData());
+		}
+		for(Promocion p : promocionesNoFav) {
+			lista.add(p.generateData());
+		}
+		for(Atraccion a : atraccionesNoFav) {
 			lista.add(a.generateData());
 		}
 

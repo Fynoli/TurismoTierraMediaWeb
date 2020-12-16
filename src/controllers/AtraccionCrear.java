@@ -79,8 +79,7 @@ public class AtraccionCrear extends HttpServlet {
 		
 		aD.altaDeAtraccion(atraccionNueva);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("atraccionlist");
-		dispatcher.forward(request, response);
+		response.sendRedirect("atraccionlist");
 		
 	}
 

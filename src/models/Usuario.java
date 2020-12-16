@@ -181,7 +181,7 @@ public class Usuario {
 
 	public boolean leGustaEstaPromocion(Promocion promocion) {
 		for (Atraccion a : promocion.getAtracciones()) {
-			if (a.getId() == this.getFav().getId()) {
+			if (a.getTipos_atraccion().getId() == this.getFav().getId()) {
 				return true;
 			}
 		}

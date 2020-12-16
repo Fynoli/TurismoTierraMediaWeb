@@ -49,6 +49,7 @@ public class AtraccionActualizar extends HttpServlet {
 			aModificar = aD.getUna((Integer.parseInt(request.getParameter("id"))));
 			request.setAttribute("atraccion",aModificar);
 			request.setAttribute("nombre",aModificar.getNombre());
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/atraccion_editar.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -69,6 +70,7 @@ public class AtraccionActualizar extends HttpServlet {
 		tA = new TipoAtraccionDao();
 
 		aModificar = aD.getUna((Integer.parseInt(request.getParameter("id"))));
+		
 		String nombre = request.getParameter("nombre");
 		String descripcion = request.getParameter("descripcion");
 		Integer costo = Integer.parseInt(request.getParameter("costo"));
@@ -94,8 +96,7 @@ public class AtraccionActualizar extends HttpServlet {
 		
 		aD.updateAtraccion(atraccionNueva);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("atraccionlist");
-		dispatcher.forward(request, response);
+		response.sendRedirect("atraccionlist");
 			
 		
 	}

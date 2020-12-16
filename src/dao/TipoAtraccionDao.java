@@ -35,6 +35,16 @@ public class TipoAtraccionDao {
 		}
 		return Collections.EMPTY_LIST;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<TipoAtraccion> getTiposAtracciones() {
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			return (List<TipoAtraccion>) session.createQuery("FROM TipoAtraccion TA").getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Collections.EMPTY_LIST;
+	}
 
 	public TipoAtraccion unTipoAtraccion(Usuario usuario) {
 		TipoAtraccion miTipoAtraccion = null;
@@ -48,6 +58,26 @@ public class TipoAtraccionDao {
 			e.printStackTrace();
 		}
 		return miTipoAtraccion;
+	}
+	
+	public boolean baja(Integer id){
+
+		try(Session session = HibernateUtil.getSessionFactory().openSession()){
+			session.beginTransaction();
+			TipoAtraccion tp1 = (TipoAtraccion) session
+					.createQuery("FROM TipoAtraccion T WHERE T.id = :Id")
+					.setParameter("Id", id)
+					.getSingleResult();
+			tp1.setActivo(0);
+			session.saveOrUpdate(tp1);
+			System.out.println("El tipo eliminado es:" + tp1.getNombre());
+			session.getTransaction().commit();
+			return true;
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return false;
+
 	}
 
 	public boolean crear(TipoAtraccion tipoAtraccion) {

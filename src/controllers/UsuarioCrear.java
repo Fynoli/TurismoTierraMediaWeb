@@ -39,7 +39,7 @@ public class UsuarioCrear extends HttpServlet {
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
 		
 		if(usuario.getEsadmin()==1) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crear_usuario.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/usuario_crear.jsp");
 			dispatcher.forward(request, response);
 		}
 		else {
@@ -56,10 +56,10 @@ public class UsuarioCrear extends HttpServlet {
 	/*	nombre, (idTipoATrccion), presupuesto, tiempo diponible, password, (activo), (isAdmin),  */
 		
 		String nombre = (String) request.getParameter("nombre");
-		Integer idTipoAtraccion = Integer.parseInt( request.getParameter("idTipoA"));
+		Integer idTipoAtraccion = Integer.parseInt( request.getParameter("tipo"));
 		Integer presupuesto = Integer.parseInt( request.getParameter("presupuesto"));
-		Double tiempoDisponible = Double.parseDouble(request.getParameter("tiempoDisp"));
-		String password = new String(Blowfish.getInstance().encrypt((String) request.getParameter("password")));
+		Double tiempoDisponible = Double.parseDouble(request.getParameter("tiempo"));
+		String password = Blowfish.getInstance().encrypt((String) request.getParameter("password"));
 		Integer isActivo = Integer.parseInt( request.getParameter("isActivo"));
 		Integer isAdmin = Integer.parseInt(request.getParameter("isAdmin"));
 		
@@ -76,8 +76,7 @@ public class UsuarioCrear extends HttpServlet {
 		
  		uD.crear(usuarioNuevo);
  		
- 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/usuarios.jsp");
-		dispatcher.forward(request, response);
+ 		response.sendRedirect("usuarioslist");
 		
 	}
 

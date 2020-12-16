@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 
 <div class="section">
-	<h1 class="title has-text-centered">Mi itinerario para hoy</h1>
+	<h1 class="title has-text-centered"><c:out value="${usuario.getNombre()}" escapeXml="false"/>, este es tu itinerario para el día de hoy.</h1>
 </div>
 <table id="example" class="display table">
 	<thead class="thead">

@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import crypto.Blowfish;
 import dao.UsuarioDao;
 
 /**
@@ -46,6 +48,7 @@ public class Login extends HttpServlet {
 		
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");	
+				password=Blowfish.getInstance().encrypt(password);
 				
 
 				//System.out.println("La pass Encriptada es: "+ new String(Blowfish.getInstance().encrypt(password)));

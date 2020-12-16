@@ -53,7 +53,7 @@
 									data : 'Costo',
 									render : function(data, type, row) {
 										return data
-												+ ' <img width="20" height="20" src="https://i.ibb.co/gWZdQbP/MonedaME.png">';
+												+ ' <img width="20" height="20" align="right" src="https://i.ibb.co/gWZdQbP/MonedaME.png">';
 									}
 								},
 								{

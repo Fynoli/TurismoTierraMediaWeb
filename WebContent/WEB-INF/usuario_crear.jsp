@@ -1,7 +1,7 @@
 <jsp:include page="layout/header.jsp"></jsp:include>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <section class="section has-bg-map">
-	<h2 class="title has-text-centered has-text-warning-light">Edita este usuario</h2>
+	<h2 class="title has-text-centered has-text-warning-light">Crea un nuevo usuario</h2>
 
 	<div class="container mt-6">
 
@@ -11,16 +11,15 @@
 				<div class="card is-smooth">
 					<div class="card-header">
 						<h2 class="card-header-title subtitle has-text-warning-light">
-							Modificar Usuario</h2>
+							Datos del usuario</h2>
 					</div>
 					<div class="card-content">
-						<form class="form" action="usuarioactualizar" method="POST">
-						<input name="id" id="id" value="${uModificar.getId()}" hidden>
+						<form class="form" action="usuariocrear" method="POST">
 							<div class="field">
 								<label class="label has-text-warning-light" for="nombre">Nombre</label>
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="nombre" id="nombre"
-										value="${uModificar.getNombre()}">
+										placeholder="Ingrese su nombre">
 									<span class="icon is-small is-left"> <i
 										class="fas fa-user"></i>
 									</span>
@@ -30,7 +29,7 @@
                                 <label class="label has-text-warning-light" for="tipo">Preferencia</label>
                                 <div class="control has-icons-left">
                                     <input type="text" class="input" name="tipo"
-                                           id="tipo" value="${uModificar.getTipoAtraccion().getId()}"> <span class="icon is-small is-left">
+                                           id="tipo" placeholder="Ingrese la id de si preferencia"> <span class="icon is-small is-left">
 										<i class="fas fa-user"></i>
 									</span>
                                 </div>
@@ -40,22 +39,22 @@
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="presupuesto"
 										id="presupuesto"
-										value="${uModificar.getPresupuesto()}">
+										placeholder="Ingrese presupuesto inicial">
 									<span class="icon is-small is-left"> <i
-										class="fas fa-key"></i>
+										class="fas fa-coins"></i>
 									</span>
 								</div>
 							</div>
 
 							<div class="field">
-								<label class="label has-text-warning-light" for="tiempoDisp">Tiempo
+								<label class="label has-text-warning-light" for="tiempo">Tiempo
 									disponible</label>
 								<div class="control has-icons-left">
-									<input type="text" class="input" name="tiempoDisp"
+									<input type="text" class="input" name="tiempo"
 										id="tiempoDisp"
-										value="${uModificar.getTiempo_disponible()}">
+										placeholder="Ingrese el tiempo disponible inicial">
 									<span class="icon is-small is-left"> <i
-										class="fas fa-key"></i>
+										class="fas fa-clock"></i>
 									</span>
 								</div>
 							</div>
@@ -64,7 +63,7 @@
 								<label class="label has-text-warning-light" for="password">Contraseña</label>
 								<div class="control has-icons-left">
 									<input type="password" class="input" name="password" id="password"
-										value="${uModificar.getPassword()}">
+										placeholder="Ingrese la contraseña">
 									<span class="icon is-small is-left"> <i
 										class="fas fa-key"></i>
 									</span>
@@ -75,7 +74,7 @@
 								<label class="label has-text-warning-light" for="isActivo">Activo</label>
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="isActivo" id="isActivo"
-										value="${uModificar.getActivo()}" escapeXml="false">
+										placeholder="Ingrese 1 para usuario activo o 0 para inactivo">
 									<span class="icon is-small is-left"> <i
 										class="fas fa-key"></i>
 									</span>
@@ -86,7 +85,7 @@
 								<label class="label has-text-warning-light" for="isAdmin">Administrador</label>
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="isAdmin" id="isAdmin"
-										value="${uModificar.getEsadmin()}">
+										placeholder="Ingrese 1 para usuario admin o 0 para inactivo">
 									<span class="icon is-small is-left"> <i
 										class="fas fa-key"></i>
 									</span>
@@ -98,7 +97,7 @@
 									<a href="usuarioslist" class="button is-primary">Cancelar</a>
 								</div>
 								<div class="control">
-									<button type="submit" class="button is-link">Modificar</button>
+									<button type="submit" class="button is-link">Crear</button>
 								</div>
 							</div>
 						</form>

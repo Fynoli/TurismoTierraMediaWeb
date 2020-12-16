@@ -42,7 +42,7 @@ public class Blowfish {
 		}
 	}
 
-	public static byte[] encrypt(String input) {
+	public static String encrypt(String input) {
 		/* El texto ingresado es encriptado */
 		byte[] encrypted = null;
 		changeToEncryptMode(secretkey);
@@ -55,7 +55,7 @@ public class Blowfish {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return encrypted;
+		return new String(encrypted);
 	}
 
 	public static String decrypt(byte[] input) {
