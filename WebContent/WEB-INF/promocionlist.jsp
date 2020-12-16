@@ -3,6 +3,9 @@
 <div class="section">
     <h1 class="title has-text-centered">Listado de Promociones</h1>
 </div>
+<div>
+<a class="button is-link" href="altadepromo">Crear una nueva</a>
+</div>
 <table id="example" class="display table">
     <thead class="thead">
     <tr>

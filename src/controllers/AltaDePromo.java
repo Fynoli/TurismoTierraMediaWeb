@@ -47,7 +47,14 @@ public class AltaDePromo extends HttpServlet {
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
 
 		if (usuario.getEsadmin() == 1) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/crear_promo.jsp");
+			
+			AtraccionDao aD= new AtraccionDao();
+			List<Atraccion> atracciones = new ArrayList<Atraccion>();
+			atracciones.addAll(aD.getAtracciones());	
+			
+			request.setAttribute("atracciones", atracciones);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/promocion_crear.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/no_permitido.jsp");
@@ -78,6 +85,7 @@ public class AltaDePromo extends HttpServlet {
 		 */
 		List<Integer> atraccionesID = new ArrayList<Integer>();
 		String[] atraccionesValues = request.getParameterValues("atracciones");
+		
 		for (int i = 0; i < atraccionesValues.length; i++) {
 			atraccionesID.add(Integer.parseInt(atraccionesValues[i]));
 		}
