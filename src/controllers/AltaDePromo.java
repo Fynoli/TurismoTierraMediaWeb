@@ -97,6 +97,7 @@ public class AltaDePromo extends HttpServlet {
 		}
 
 		nuevaPromo.setAtracciones(atracciones);
+		
 		/*----------------------------------------------------------------*/
 
 		/*

@@ -73,7 +73,7 @@ public class CambioDePromo extends HttpServlet {
 		 * Tomo la lista de atracciones que viene del jsp. TENGO DUDAS SERIAS DE ESTO!
 		 */
 		List<Integer> atraccionesID = new ArrayList<Integer>();
-		String[] atraccionesValues = request.getParameterValues("atracciones");
+		String[] atraccionesValues = request.getParameter("atracciones").split(",");
 		for (int i = 0; i < atraccionesValues.length; i++) {
 			atraccionesID.add(Integer.parseInt(atraccionesValues[i]));
 		}

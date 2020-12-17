@@ -47,8 +47,7 @@ public class Login extends HttpServlet {
 		// http://localhost:8080/HolaMundo/login
 		
 				String username = request.getParameter("username");
-				String password = request.getParameter("password");	
-				password=Blowfish.getInstance().encrypt(password);
+				String password = password=Blowfish.getInstance().encrypt(request.getParameter("password"));
 				
 
 				//System.out.println("La pass Encriptada es: "+ new String(Blowfish.getInstance().encrypt(password)));

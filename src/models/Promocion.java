@@ -33,8 +33,10 @@ public class Promocion {
     @Column(name = "activo")
 	private int activo;
     
-    @ManyToMany(mappedBy = "promociones", fetch = FetchType.EAGER)
-    private Set<Atraccion> atracciones = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "promocion_atraccion", joinColumns = {
+			@JoinColumn(name = "promocion_id") }, inverseJoinColumns = { @JoinColumn(name = "atraccion_id") })
+	Set<Atraccion> atracciones = new HashSet<>();
     
 
     public void setId(int id) {

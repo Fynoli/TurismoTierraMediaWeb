@@ -39,12 +39,9 @@ public class Atraccion {
 	@ManyToOne
 	@JoinColumn(name = "tipo_id")
 	private TipoAtraccion tipos_atraccion;
-
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "promocion_atraccion", joinColumns = {
-			@JoinColumn(name = "atraccion_id") }, inverseJoinColumns = { @JoinColumn(name = "promocion_id") })
-	Set<Promocion> promociones = new HashSet<>();
 	
+	@ManyToMany(mappedBy = "atracciones", fetch = FetchType.EAGER)
+    private Set<Promocion> promociones = new HashSet<>();
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "detalle_itinerario", joinColumns = {
@@ -116,6 +113,12 @@ public class Atraccion {
 	public void setTipos_atraccion(TipoAtraccion tipos_atraccion) {
 		this.tipos_atraccion = tipos_atraccion;
 	}
+	
+	/* End Getters and setters */
+
+	public Set<Usuario> getUsuarios() {
+		return usuarios;
+	}
 
 	public Set<Promocion> getPromociones() {
 		return promociones;
@@ -124,7 +127,10 @@ public class Atraccion {
 	public void setPromociones(Set<Promocion> promociones) {
 		this.promociones = promociones;
 	}
-	/* End Getters and setters */
+
+	public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
 
 	@Override
 	public String toString() {

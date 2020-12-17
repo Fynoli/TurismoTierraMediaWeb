@@ -189,7 +189,7 @@ public class PromocionDao {
 			int lastId = (int) session.createQuery("select max(P.id) from Promocion P").uniqueResult();
             promocion.setId(++lastId);
 			session.beginTransaction();
-            session.saveOrUpdate(promocion);
+            session.persist(promocion);
             session.getTransaction().commit();
 		}
 		catch (Exception e){

@@ -51,6 +51,7 @@ public class HibernateUtil {
                 configuration.addAnnotatedClass(Itinerario_detalle.class);
                 configuration.addAnnotatedClass(Promocion.class);
                 configuration.addAnnotatedClass(TipoAtraccion.class);
+                
                 //------
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
