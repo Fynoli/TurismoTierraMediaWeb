@@ -78,16 +78,16 @@ public class AltaDePromo extends HttpServlet {
 		nuevaPromo.setNombre((String) request.getParameter("nombre"));
 		nuevaPromo.setDescripcion((String) request.getParameter("descripcion"));
 		nuevaPromo.setCosto(Integer.parseInt(request.getParameter("costo")));
-		nuevaPromo.setActivo(1);
+		nuevaPromo.setActivo(Integer.parseInt(request.getParameter("activo")));
 
 		/*
 		 * Tomo la lista de atracciones que viene del jsp. TENGO DUDAS SERIAS DE ESTO!
 		 */
 		List<Integer> atraccionesID = new ArrayList<Integer>();
-		String[] atraccionesValues = request.getParameterValues("atracciones");
+		String[] atraccionesValues = request.getParameter("atracciones").split(",");
 		
 		for (int i = 0; i < atraccionesValues.length; i++) {
-			atraccionesID.add(Integer.parseInt(atraccionesValues[i]));
+			atraccionesID.add(Integer.parseInt(atraccionesValues[i])+1);
 		}
 
 		Set<Atraccion> atracciones = new HashSet<>();
@@ -114,8 +114,7 @@ public class AltaDePromo extends HttpServlet {
 		/*Alta de la promo en la DB*/
 		pD.altaDePromocion(nuevaPromo);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/listadepromo");
-		dispatcher.forward(request, response);
+		response.sendRedirect("listadepromo");
 
 	}
 

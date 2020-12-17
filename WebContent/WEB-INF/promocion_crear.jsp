@@ -67,7 +67,7 @@
 							<div class="field">
 								<label class="label has-text-warning-light" for="isActivo">Activa</label>
 								<div class="control has-icons-left">
-									<input type="text" class="input" name="isActivo" id="isActivo"
+									<input type="text" class="input" name="activo" id="isActivo"
 										placeholder="Ingrese 1 para dar el alta o 0 para baja">
 									<span class="icon is-small is-left"> <i
 										class="fas fa-key"></i>
