@@ -26,6 +26,8 @@ import models.Usuario;
 @WebServlet("/cambiodepromo")
 public class CambioDePromo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	private Promocion promocion = new Promocion();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -45,7 +47,17 @@ public class CambioDePromo extends HttpServlet {
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
 
 		if (usuario.getEsadmin() == 1) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/cambiar_promo.jsp");
+
+			AtraccionDao aD= new AtraccionDao();
+			List<Atraccion> atracciones = new ArrayList<Atraccion>();
+			atracciones.addAll(aD.getAtraccionesActivas());
+
+			request.setAttribute("atracciones", atracciones);
+
+			PromocionDao pDao = new PromocionDao();
+			promocion = pDao.getUna(Integer.parseInt(request.getParameter("id")));
+			request.setAttribute("promo", promocion);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/promocion_editar.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/no_permitido.jsp");
@@ -61,8 +73,7 @@ public class CambioDePromo extends HttpServlet {
 		/* Creacion de la nueva promo */
 
 		PromocionDao pD = new PromocionDao();
-		Promocion promocion = pD.getUna(Integer.parseInt((String) request.getParameter("id")));
-		
+
 		promocion.setNombre((String) request.getParameter("nombre"));
 		promocion.setDescripcion((String) request.getParameter("descripcion"));
 		promocion.setCosto(Integer.parseInt(request.getParameter("costo")));
@@ -75,7 +86,7 @@ public class CambioDePromo extends HttpServlet {
 		List<Integer> atraccionesID = new ArrayList<Integer>();
 		String[] atraccionesValues = request.getParameter("atracciones").split(",");
 		for (int i = 0; i < atraccionesValues.length; i++) {
-			atraccionesID.add(Integer.parseInt(atraccionesValues[i]));
+			atraccionesID.add(Integer.parseInt(atraccionesValues[i])+1);
 		}
 
 		Set<Atraccion> atracciones = new HashSet<>();

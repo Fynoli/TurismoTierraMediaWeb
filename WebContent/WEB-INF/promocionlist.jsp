@@ -1,16 +1,13 @@
-<jsp:include page="layout/header.jsp"></jsp:include>
+<jsp:include page="admin_panel.jsp"></jsp:include>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<div class="section">
-    <h1 class="title has-text-centered">Listado de Promociones</h1>
-</div>
-<div>
-<a class="button is-link" href="altadepromo">Crear una nueva</a>
-</div>
+
+<div class="container column is-9  has-text-right">
+    <a class="button is-link" href="altadepromo">Crear promocion</a>
 <table id="example" class="display table">
     <thead class="thead">
     <tr>
         <th>Nombre</th>
-        <th>Descripción</th>
+        <th>DescripciÃ³n</th>
         <th>Costo</th>
         <th>Tiempo</th>
         <th>Cupo</th>
@@ -21,7 +18,8 @@
     <tbody>
     </tbody>
 </table>
-
+</div>
+</section>
 <script
         src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 
@@ -46,8 +44,11 @@
                             return data + ' Hs';
                         }
                     },
-                    {data : 'Cupo',},
-                    {data : 'Editar',
+                    {
+                        data : 'Cupo'
+                    },
+                    {
+                        data : 'Editar',
                         render : function(data, type, row) {
                             return '<button id="buttonEditar">Editar</button>'
                         }

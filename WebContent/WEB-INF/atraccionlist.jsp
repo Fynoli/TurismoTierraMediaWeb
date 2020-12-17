@@ -1,27 +1,26 @@
-<jsp:include page="layout/header.jsp"></jsp:include>
+<jsp:include page="admin_panel.jsp"></jsp:include>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<div class="section">
-    <h1 class="title has-text-centered">Listado de Atracciones</h1>
-</div>
-<div>
-<a class="button is-link" href="atraccioncrear">Crear una nueva</a>
-</div>
-<table id="example" class="display table">
-    <thead class="thead">
-    <tr>
-        <th>Nombre</th>
-        <th>Tipo de Atracción</th>
-        <th>Costo</th>
-        <th>Tiempo</th>
-        <th>Cupo</th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
 
+<div class="container column is-9 has-text-right">
+    <a class="button is-link" href="atraccioncrear">Crear una nueva</a>
+
+    <table id="example" class="display table">
+        <thead class="thead">
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo de Atracciï¿½n</th>
+            <th>Costo</th>
+            <th>Tiempo</th>
+            <th>Cupo</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+</section>
 <script
         src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 

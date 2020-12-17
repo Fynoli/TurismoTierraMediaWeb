@@ -1,8 +1,8 @@
-<jsp:include page="layout/header.jsp"></jsp:include>
+<jsp:include page="admin_panel.jsp"></jsp:include>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<div class="section">
-	<h1 class="title has-text-centered">Tipo de Atracciones disponibles</h1>
-</div>
+
+<div class="container column is-9  has-text-right">
+	<a class="button is-link" href="tipoatraccionalta">Crear tipo nuevo</a>
 <table id="example" class="display table">
 	<thead class="thead">
 		<tr>
@@ -17,6 +17,8 @@
 	<tbody>
 	</tbody>
 </table>
+</div>
+</section>
 
 <script
 	src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
@@ -52,7 +54,8 @@
 							render : function(data, type, row) {
 								return '<button id="buttonDelete">Borrar</button>'
 							}
-						}, ]
+						},
+				]
 			});
 
 

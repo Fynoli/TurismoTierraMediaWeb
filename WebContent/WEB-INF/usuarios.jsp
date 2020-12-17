@@ -1,25 +1,29 @@
-<jsp:include page="layout/header.jsp"></jsp:include>
+<jsp:include page="admin_panel.jsp"></jsp:include>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<div class="section">
-	<h1 class="title has-text-centered">Usuarios disponibles</h1>
-</div>
-<div>
-<a class="button is-link" href="usuariocrear">Crear nuevo usuario</a>
-</div>
-<table id="example" class="display table">
-	<thead class="thead">
-		<tr>
-			<th>Nombre</th>
-			<th>Preferencia</th>
-			<th>Presupuesto</th>
-			<th>Tiempo Disponible</th>
-			<th></th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-	</tbody>
-</table>
+
+<div class="container column is-9  has-text-right">
+		<a class="button is-link" href="usuariocrear">Crear nuevo usuario</a>
+
+		<table id="example" class="display table mt-8">
+			<thead class="thead">
+			<tr>
+				<th>Nombre</th>
+				<th></th>
+				<th>Preferencia</th>
+				<th>Presupuesto</th>
+				<th>Tiempo Disponible</th>
+				<th></th>
+				<th></th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</section>
+
+
+
 
 <script
 	src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
@@ -35,6 +39,19 @@
 						columns : [
 								{
 									data : 'Nombre',
+								},
+								{
+								data : 'Admin',
+								render : function(data, type, row) {
+									if(data==1)
+									{
+										return '<img width="20" height="20" src="https://i.ibb.co/xYstTYt/admin-Icon.png">';
+									}
+									else{
+										return "";
+									}
+
+								}
 								},
 								{
 									data : 'Preferencia',

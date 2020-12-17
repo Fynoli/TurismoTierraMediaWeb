@@ -1,6 +1,8 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import crypto.Blowfish;
+import dao.AtraccionDao;
 import dao.UsuarioDao;
+import models.Atraccion;
+import models.Usuario;
 
 /**
  * Servlet implementation class Login
@@ -55,9 +60,24 @@ public class Login extends HttpServlet {
 				
 				if (uDao.validar(username, password)) {
 					request.getSession().setAttribute("usuarioId", uDao.getUno(username).getId());
-					
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/profile");
-					dispatcher.forward(request, response);
+
+					Usuario usuario = uDao.getUno((Integer) request.getSession().getAttribute("usuarioId"));
+
+					if (usuario.getEsadmin() == 1) {
+
+						AtraccionDao aD= new AtraccionDao();
+						List<Atraccion> atracciones = new ArrayList<Atraccion>();
+						atracciones.addAll(aD.getAtracciones());
+
+						request.setAttribute("atracciones", atracciones);
+
+						RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioslist");
+						dispatcher.forward(request,response);
+					} else {
+						RequestDispatcher dispatcher = request.getRequestDispatcher("profile");
+						dispatcher.forward(request,response);
+					}
+
 				} else {
 					request.setAttribute("failed", "true");
 					

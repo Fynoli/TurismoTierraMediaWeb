@@ -1,3 +1,13 @@
 /.metadata/
 /TurismoTierraMediaWeb/.settings
 /TurismoTierraMediaWeb/bin
+/.idea
+/META-INF
+TurismoTierraMediaWeb.iml
+WebContent/WEB-INF/lib/tomcat-jasper-7.0.82.jar
+WebContent/WEB-INF/web.xml
+WebContent/assets/Web_1920___1.html
+WebContent/WEB-INF/welcome.jsp
+lib/
+out/
+web/

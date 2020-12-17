@@ -196,6 +196,8 @@ public class Usuario {
 		jsonObject.addProperty("Preferencia", getTipoAtraccion().getNombre());
 		jsonObject.addProperty("Presupuesto", getPresupuesto());
 		jsonObject.addProperty("Tiempo Disponible", getTiempo_disponible());
+		jsonObject.addProperty("Activo", this.getActivo());
+		jsonObject.addProperty("Admin", this.getEsadmin());
 
 		return jsonObject.toString();
 	}

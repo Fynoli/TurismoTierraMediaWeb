@@ -28,7 +28,7 @@ public class Logout extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getSession().removeAttribute("usuario");
+		request.getSession().removeAttribute("usuarioId");
 		response.sendRedirect(".");
 	}
 

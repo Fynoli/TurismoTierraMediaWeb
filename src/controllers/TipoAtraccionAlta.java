@@ -85,7 +85,7 @@ public class TipoAtraccionAlta extends HttpServlet {
 		
  		aTD.crear(tipoAtraccion);
  		
- 		RequestDispatcher dispatcher = request.getRequestDispatcher("TipoAtraccionList");
+ 		RequestDispatcher dispatcher = request.getRequestDispatcher("tipoatraccionlist");
 		dispatcher.forward(request, response);
 	}
 

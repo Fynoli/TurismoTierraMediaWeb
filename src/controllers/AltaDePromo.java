@@ -50,7 +50,7 @@ public class AltaDePromo extends HttpServlet {
 			
 			AtraccionDao aD= new AtraccionDao();
 			List<Atraccion> atracciones = new ArrayList<Atraccion>();
-			atracciones.addAll(aD.getAtracciones());	
+			atracciones.addAll(aD.getAtraccionesActivas());
 			
 			request.setAttribute("atracciones", atracciones);
 			

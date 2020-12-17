@@ -39,9 +39,8 @@ public class UsuarioBaja extends HttpServlet {
 		
 		if(usuario.getEsadmin()==1) {
 			
-			
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/usuarios.jsp");
+			uD.baja(Integer.parseInt(request.getParameter("id")));
+			RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioslist");
 			dispatcher.forward(request, response);
 		}
 		else {

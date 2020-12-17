@@ -15,10 +15,12 @@
 </head>
 <body>
 	<header class="hero">
-		<div class="hero-body has-background-grey-dark">
-			<div class="container is-max-desktop">
-				<h1 class="title has-text-warning-dark">Turismo en la Tierra
-					media</h1>
+		<div class="hero-body has-bg-primary">
+			<div class="container is-max-desktop level">
+				<div class="level-left" >
+					<h1 class="title has-text-warning-dark"><a href="/">Turismo en la Tierra media</a></h1>
+				</div>
+				<div class="level-right"><a class="button is-warning"href="logout">Cerrar sesión</a></div>
 			</div>
 		</div>
 	</header>

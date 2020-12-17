@@ -56,13 +56,17 @@ public class Compra extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println((Integer) request.getSession().getAttribute("usuarioId"));
+		if ((Integer) request.getSession().getAttribute("usuarioId") == null){
+			response.sendRedirect(".");
+		}
 		aD = new AtraccionDao();
 		uD = new UsuarioDao();
 		pD = new PromocionDao();
 		
-		List<String> lista = new ArrayList<String>();
 		Usuario usuario = uD.getUno((Integer) request.getSession().getAttribute("usuarioId"));
-		
+		List<String> lista = new ArrayList<String>();
+
 		List<Promocion> promocionesFav = pD.getPromocionesFavoritas(usuario);
 		List<Atraccion> atraccionesFav = aD.getAtraccionesFavoritas(usuario);
 		List<Promocion> promocionesNoFav = pD.getPromocionesNoFavoritas(usuario);

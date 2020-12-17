@@ -1,22 +1,22 @@
 <jsp:include page="layout/header.jsp"></jsp:include>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<section class="section has-bg-map">
-	<h2 class="title has-text-centered has-text-warning-light">Crea un nuevo usuario</h2>
+<section class="section">
+	<h2 class="title has-text-centered">Crea un nuevo usuario</h2>
 
 	<div class="container mt-6">
 
 		<div class="columns is-variable is-8">
 
 			<div class="column">
-				<div class="card is-smooth">
+				<div class="card">
 					<div class="card-header">
-						<h2 class="card-header-title subtitle has-text-warning-light">
+						<h2 class="card-header-title subtitle">
 							Datos del usuario</h2>
 					</div>
 					<div class="card-content">
 						<form class="form" action="usuariocrear" method="POST">
 							<div class="field">
-								<label class="label has-text-warning-light" for="nombre">Nombre</label>
+								<label class="label" for="nombre">Nombre</label>
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="nombre" id="nombre"
 										placeholder="Ingrese su nombre">
@@ -26,16 +26,16 @@
 								</div>
 							</div>
 							<div class="field">
-                                <label class="label has-text-warning-light" for="tipo">Preferencia</label>
+                                <label class="label" for="tipo">Preferencia</label>
                                 <div class="control has-icons-left">
                                     <input type="text" class="input" name="tipo"
                                            id="tipo" placeholder="Ingrese la id de si preferencia"> <span class="icon is-small is-left">
-										<i class="fas fa-user"></i>
+										<i class="fas fa-map-signs"></i>
 									</span>
                                 </div>
                             </div>
 							<div class="field">
-								<label class="label has-text-warning-light" for="presupuesto">Presupuesto</label>
+								<label class="label " for="presupuesto">Presupuesto</label>
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="presupuesto"
 										id="presupuesto"
@@ -47,7 +47,7 @@
 							</div>
 
 							<div class="field">
-								<label class="label has-text-warning-light" for="tiempo">Tiempo
+								<label class="label" for="tiempo">Tiempo
 									disponible</label>
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="tiempo"
@@ -60,10 +60,10 @@
 							</div>
 
 							<div class="field">
-								<label class="label has-text-warning-light" for="password">Contraseña</label>
+								<label class="label" for="password">Contraseï¿½a</label>
 								<div class="control has-icons-left">
 									<input type="password" class="input" name="password" id="password"
-										placeholder="Ingrese la contraseña">
+										placeholder="Ingrese la contraseï¿½a">
 									<span class="icon is-small is-left"> <i
 										class="fas fa-key"></i>
 									</span>
@@ -71,7 +71,7 @@
 							</div>
 
 							<div class="field">
-								<label class="label has-text-warning-light" for="isActivo">Activo</label>
+								<label class="label" for="isActivo">Activo</label>
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="isActivo" id="isActivo"
 										placeholder="Ingrese 1 para usuario activo o 0 para inactivo">
@@ -82,12 +82,12 @@
 							</div>
 
 							<div class="field">
-								<label class="label has-text-warning-light" for="isAdmin">Administrador</label>
+								<label class="label" for="isAdmin">Administrador</label>
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="isAdmin" id="isAdmin"
 										placeholder="Ingrese 1 para usuario admin o 0 para inactivo">
 									<span class="icon is-small is-left"> <i
-										class="fas fa-key"></i>
+										class="fas fa-users-cog"></i>
 									</span>
 								</div>
 							</div>
