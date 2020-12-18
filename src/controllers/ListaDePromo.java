@@ -45,7 +45,9 @@ public class ListaDePromo extends HttpServlet {
 			PromocionDao pD= new PromocionDao();
 			List<Promocion> promociones = pD.getPromociones();
 			for(Promocion p : promociones) {
-				lista.add(p.generateDataAdmin());
+				if(p.getPromocion_id()!=4) {
+					lista.add(p.generateDataAdmin());
+				}
 			}
 			
 			
