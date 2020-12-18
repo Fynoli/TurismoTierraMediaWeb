@@ -58,7 +58,7 @@ public class UsuarioCrear extends HttpServlet {
 		String nombre = (String) request.getParameter("nombre");
 		Integer idTipoAtraccion = Integer.parseInt( request.getParameter("tipo"));
 		Integer presupuesto = Integer.parseInt( request.getParameter("presupuesto"));
-		Double tiempoDisponible = Double.parseDouble(request.getParameter("tiempo"));
+		Double tiempoDisponible = Double.parseDouble(request.getParameter("tiempoDisp"));
 		String password = Blowfish.getInstance().encrypt((String) request.getParameter("password"));
 		Integer isActivo = Integer.parseInt( request.getParameter("isActivo"));
 		Integer isAdmin = Integer.parseInt(request.getParameter("isAdmin"));

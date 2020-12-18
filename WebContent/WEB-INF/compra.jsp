@@ -2,31 +2,36 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 
 <div class="section">
-	<h1 class="title has-text-centered">Compra tus actividades</h1>
+	<div class="section">
+		<h1 class="title has-text-centered">Compra tus actividades</h1>
+	</div>
+	<div class="has-text-centered">
+		Te restan:
+		<c:out value="${usuario.getPresupuesto()}" />
+		<img width="20" height="20" src="https://i.ibb.co/gWZdQbP/MonedaME.png">
+		y
+		<c:out value="${usuario.getTiempo_disponible()}" />
+		Hs. disponibles.
+	</div>
+	<table id="example" class="display table">
+		<thead class="thead">
+			<tr>
+				<th>Nombre</th>
+				<th>Tipo</th>
+				<th>Descripciï¿½n</th>
+				<th>Costo</th>
+				<th>Tiempo</th>
+				<th>Cupo</th>
+				<th>Compra</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
 </div>
-<div class="has-text-centered">
-	Te restan:
-	<c:out value="${usuario.getPresupuesto()}" />
-	<img width="20" height="20" src="https://i.ibb.co/gWZdQbP/MonedaME.png">
-	y
-	<c:out value="${usuario.getTiempo_disponible()}" />
-	Hs. disponibles.
+<div class="has-text-centered section">
+	<a href="itinerariousuario" class="button is-success">Ver Itinerario</a>
 </div>
-<table id="example" class="display table">
-	<thead class="thead">
-		<tr>
-			<th>Nombre</th>
-			<th>Tipo</th>
-			<th>Descripción</th>
-			<th>Costo</th>
-			<th>Tiempo</th>
-			<th>Cupo</th>
-			<th>Compra</th>
-		</tr>
-	</thead>
-	<tbody>
-	</tbody>
-</table>
 
 <script
 	src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>

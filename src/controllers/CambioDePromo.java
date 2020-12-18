@@ -57,7 +57,7 @@ public class CambioDePromo extends HttpServlet {
 			PromocionDao pDao = new PromocionDao();
 			promocion = pDao.getUna(Integer.parseInt(request.getParameter("id")));
 			request.setAttribute("promo", promocion);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/promocion_editar.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/promocion_crear.jsp");//("/WEB-INF/promocion_editar.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/no_permitido.jsp");

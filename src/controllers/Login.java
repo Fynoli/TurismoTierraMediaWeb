@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
 				//System.out.println("La pass Encriptada es: "+ new String(Blowfish.getInstance().encrypt(password)));
 				//password=new String(Blowfish.getInstance().encrypt(password));
 				
-				if (uDao.validar(username, password)) {
+				if (uDao.validar(username, password) && uDao.getUno(username).getActivo() ==1 ) {
 					request.getSession().setAttribute("usuarioId", uDao.getUno(username).getId());
 
 					Usuario usuario = uDao.getUno((Integer) request.getSession().getAttribute("usuarioId"));

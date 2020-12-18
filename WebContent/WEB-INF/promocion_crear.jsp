@@ -15,13 +15,16 @@
 							Datos de la promoci�n</h2>
 					</div>
 					<div class="card-content">
-						<form id="formulario" class="form" action="altadepromo" method="POST">
+						<form id="formulario" class="form" <c:choose><c:when test="${promo==null}">action="altadepromo"</c:when>  <c:otherwise>   action="cambiodepromo" </c:otherwise></c:choose> method="POST">
 
 							<div class="field">
 								<label class="label" for="nombre">Nombre</label>
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="nombre" id="nombre"
-										placeholder="Nombre"> <span
+										placeholder="Nombre"
+										<c:if test="${promo != null}">
+										   value='${promo.getNombre()}'
+											</c:if>> <span
 										class="icon is-small is-left"> <i
 										class="fas fa-align-left"></i>
 									</span>
@@ -32,7 +35,9 @@
 								<label class="label" for="descripcion">Descripci�n</label>
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="descripcion"
-										id="descripcion" placeholder="Descripcion"> <span
+										id="descripcion" placeholder="Descripcion" <c:if test="${promo != null}">
+										   value='${promo.getDescNoHTML()}'
+									</c:if>> <span
 										class="icon is-small is-left"> <i
 										class="fas fa-align-left"></i>
 									</span>
@@ -43,7 +48,9 @@
 								<label class="label" for="costo">Costo</label>
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="costo" id="costo"
-										placeholder="Costo"> <span
+										placeholder="Costo" <c:if test="${promo != null}">
+										   value='${promo.getCosto()}'
+									</c:if>> <span
 										class="icon is-small is-left"> <i class="fas fa-coins"></i>
 									</span>
 								</div>
@@ -68,7 +75,9 @@
 								<label class="label" for="isActivo">Activa</label>
 								<div class="control has-icons-left">
 									<input type="text" class="input" name="activo" id="isActivo"
-										placeholder="Ingrese 1 para dar el alta o 0 para baja">
+										placeholder="Ingrese 1 para dar el alta o 0 para baja" <c:if test="${promo != null}">
+										   value='${promo.getActivo()}'
+									</c:if>>
 									<span class="icon is-small is-left"> <i
 										class="fas fa-key"></i>
 									</span>
@@ -77,7 +86,7 @@
 
 							<div class="field is-grouped">
 								<div class="control">
-									<a href="atraccionlist" class="button is-primary">Cancelar</a>
+									<a href="listadepromo" class="button is-primary">Cancelar</a>
 								</div>
 								<div class="control">
 									<button id="boton" type="submit" class="button is-link">Guardar</button>

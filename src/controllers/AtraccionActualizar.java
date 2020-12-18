@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Servlet implementation class AtraccionActualizar
@@ -49,8 +50,12 @@ public class AtraccionActualizar extends HttpServlet {
 			aModificar = aD.getUna((Integer.parseInt(request.getParameter("id"))));
 			request.setAttribute("atraccion",aModificar);
 			request.setAttribute("nombre",aModificar.getNombre());
+
+			TipoAtraccionDao taD= new TipoAtraccionDao();
+			List<TipoAtraccion> tiposAtraccion= taD.getTiposAtracciones();
+			request.setAttribute("tipos", tiposAtraccion);
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/atraccion_editar.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/atraccion_crear.jsp");
 			dispatcher.forward(request, response);
 		}
 		else {
@@ -82,7 +87,7 @@ public class AtraccionActualizar extends HttpServlet {
 		atraccionNueva = aModificar;
 
 		//aca se recibiria el id del Tipo de Atraccion
-		Integer tipoAtraccion = Integer.parseInt(request.getParameter("tipo"));
+		Integer tipoAtraccion = Integer.parseInt(request.getParameter("tiposeleccionado"));
 		//Integer idTipoAtraccion = aModificar.getTipos_atraccion().getId();
 		TipoAtraccion tipoAtraccion1 = tA.getUno(tipoAtraccion);
 

@@ -1,11 +1,13 @@
 package models;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
 
 import com.google.gson.JsonObject;
+import crypto.Blowfish;
 
 @Entity
 @Table(name = "usuario")
@@ -167,6 +169,10 @@ public class Usuario {
 		}
 		return false;
 	}
+
+//	public String getDecrypt(){
+//		return Blowfish.getInstance().decrypt(this.getPassword().getBytes(StandardCharsets.UTF_8));
+//	}
 
 	public boolean tieneAlgoDeEstaPromocion(Promocion promocion) {
 		for (Atraccion adp : promocion.getAtracciones()) {

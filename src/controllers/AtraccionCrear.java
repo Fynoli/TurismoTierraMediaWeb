@@ -4,6 +4,7 @@ import dao.AtraccionDao;
 import dao.TipoAtraccionDao;
 import dao.UsuarioDao;
 import models.Atraccion;
+import models.TipoAtraccion;
 import models.Usuario;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Servlet implementation class AtraccionCrear
@@ -41,6 +43,10 @@ public class AtraccionCrear extends HttpServlet {
 
 		
 		if(usuario.getEsadmin()==1) {
+			TipoAtraccionDao taD= new TipoAtraccionDao();
+			List<TipoAtraccion> tiposAtraccion= taD.getTiposAtracciones();
+			request.setAttribute("tipos", tiposAtraccion);
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/atraccion_crear.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -62,7 +68,7 @@ public class AtraccionCrear extends HttpServlet {
 		Double tiempo = Double.parseDouble(request.getParameter("tiempo"));
 	
 		
-		Integer tipoAtraccion = Integer.parseInt(request.getParameter("tipo"));
+		Integer tipoAtraccion = Integer.parseInt(request.getParameter("tiposeleccionado"));
 		
 		aD = new AtraccionDao();
 		aTD = new TipoAtraccionDao();

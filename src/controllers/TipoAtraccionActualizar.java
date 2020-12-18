@@ -42,9 +42,9 @@ public class TipoAtraccionActualizar extends HttpServlet {
 		if(usuario.getEsadmin()==1) {
 		     tipoModificar = aD.getUno(Integer.parseInt(request.getParameter("id")));
 			
-			request.setAttribute("tipoModificar", tipoModificar);
+			request.setAttribute("tipo", tipoModificar);
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/tipoatraccion_editar.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/tipoatraccion_crear.jsp");
 			dispatcher.forward(request, response);
 		}else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/no_permitido.jsp");
@@ -66,7 +66,7 @@ public class TipoAtraccionActualizar extends HttpServlet {
 			
         aD.update(tipoModificar);
  		
- 		RequestDispatcher dispatcher = request.getRequestDispatcher("TipoAtraccionList");
+ 		RequestDispatcher dispatcher = request.getRequestDispatcher("tipoatraccionlist");
 	    dispatcher.forward(request, response);
 	}
 

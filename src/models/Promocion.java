@@ -61,6 +61,10 @@ public class Promocion {
         return dFinal;
     }
 
+    public String getDescNoHTML(){
+        return this.descripcion;
+    }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -130,7 +134,7 @@ public class Promocion {
     }
 	
 	/**
-	 * Devuelje el json de la promoción incluyendo su estado logico
+	 * Devuelje el json de la promociï¿½n incluyendo su estado logico
 	 * @return String
 	 */
 	public String generateDataAdmin() {

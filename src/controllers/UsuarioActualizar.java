@@ -44,9 +44,9 @@ public class UsuarioActualizar extends HttpServlet {
 		if (usuario.getEsadmin() == 1) {
 			
 			Usuario uModificar = uD.getUno(Integer.parseInt(request.getParameter("id")));
-			request.setAttribute("uModificar", uModificar);
+			request.setAttribute("usuario", uModificar);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/usuario_editar.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/usuario_crear.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/no_permitido.jsp");

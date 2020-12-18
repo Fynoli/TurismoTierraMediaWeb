@@ -15,7 +15,7 @@ import models.Usuario;
 /**
  * Servlet implementation class UsuarioAltaLogica
  */
-@WebServlet("/suarioaltalogica")
+@WebServlet("/usuarioaltalogica")
 public class UsuarioAltaLogica extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
